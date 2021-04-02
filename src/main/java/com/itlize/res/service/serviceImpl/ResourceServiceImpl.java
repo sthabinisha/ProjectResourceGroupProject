@@ -5,9 +5,10 @@ import com.itlize.res.entity.Resource;
 import com.itlize.res.repository.ResourcesRepository;
 import com.itlize.res.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class ResourceServiceImpl implements ResourceService {
 
 
