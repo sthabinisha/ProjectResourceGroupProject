@@ -1,0 +1,61 @@
+package com.itlize.res.service.serviceImpl;
+
+import com.itlize.res.entity.Project;
+import com.itlize.res.entity.User;
+import com.itlize.res.repository.UserRepository;
+import com.itlize.res.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+
+    @Autowired
+    private UserRepository userRepository;
+
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public String deleteUserByID(Integer uID) {
+         userRepository.deleteById(uID);
+        return "User removed !! " + uID;
+
+    }
+
+    @Override
+    public User getUserName(Integer userId) {
+        return userRepository.findById(userId).orElse(null);
+
+    }
+
+    @Override
+    public User getUserByName(String userName) {
+        return userRepository.findByUserName(userName);
+    }
+
+    @Override
+    public User UpdateUser(User user) {
+        User existingUser = userRepository.findById(user.getUserID()).orElse(null);
+        existingUser.setFirstName(user.getFirstName());
+        existingUser.setLastName(user.getLastName());
+        existingUser.setTitle(user.getTitle());
+
+        existingUser.setUsername(user.getUsername());
+
+
+
+        return userRepository.save(existingUser);
+    }
+
+    @Override
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
+}

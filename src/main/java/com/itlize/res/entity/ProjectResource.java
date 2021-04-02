@@ -9,7 +9,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class ProjectResource {
     @Id
     @GeneratedValue(strategy=IDENTITY)
-    @Column(name="prID")
+    @Column(nullable = false, updatable = false, name="prID")
+
     private Integer prID;
     @Column(name="pID")
     private Integer pID;

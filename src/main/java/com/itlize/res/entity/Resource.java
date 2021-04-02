@@ -2,6 +2,7 @@ package com.itlize.res.entity;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -9,8 +10,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Resource {
 
     @Id
-    @GeneratedValue(strategy=IDENTITY)
-    @Column(name="resourceId")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false, updatable = false, name="resourceId")
     private Integer resourceID;
 
     @Column(name = "resource")

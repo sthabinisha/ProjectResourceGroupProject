@@ -9,12 +9,13 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 public class User {
 
-    @Column(name="username")
-    private String username;
+
     @Id
     @GeneratedValue(strategy=IDENTITY)
-    @Column(name="userId")
+    @Column(nullable = false, updatable = false, name="userId")
     private Integer userID;
+    @Column(name="username")
+    private String username;
     @Column(name="password")
     private String password;
     @Column(name="firstName")

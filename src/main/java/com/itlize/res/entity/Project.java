@@ -13,7 +13,7 @@ public class Project {
 
     @Id
     @GeneratedValue(strategy=IDENTITY)
-    @Column(name="projectId")
+    @Column(nullable = false, updatable = false, name="projectId")
     private Integer projectID;
 
     @Column(name="projectName")
@@ -22,6 +22,10 @@ public class Project {
     public Project(Integer projectID, String projectName) {
         this.projectID = projectID;
         this.projectName = projectName;
+    }
+
+    public Project() {
+
     }
 
     public Integer getProjectID() {
