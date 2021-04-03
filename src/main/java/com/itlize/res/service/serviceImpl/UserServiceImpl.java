@@ -41,8 +41,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User UpdateUser(User user) {
         User existingUser = userRepository.findById(user.getUserID()).orElse(null);
-        existingUser.setFirstName(user.getFirstName());
-        existingUser.setLastName(user.getLastName());
+        existingUser.setUsername(user.getUsername());
         existingUser.setRole(user.getRole());
 
         existingUser.setUsername(user.getUsername());

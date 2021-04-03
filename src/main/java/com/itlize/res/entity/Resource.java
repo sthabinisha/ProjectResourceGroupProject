@@ -14,8 +14,6 @@ public class Resource {
     @Column(nullable = false, updatable = false, name="resourceId")
     private Integer resourceID;
 
-
-
     @Column(name = "timeCreated")
     private Date timeCreated;
 
@@ -25,11 +23,10 @@ public class Resource {
     @OneToOne(fetch=FetchType.LAZY,
             mappedBy="Resource",
             cascade= CascadeType.ALL)
-    @JoinColumn(name="resourceDetail")
     private ResourceDetails resourceDetails;
 
     @OneToMany(fetch=FetchType.LAZY,
-            mappedBy="resources",
+            mappedBy="resource",
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
     private List<ProjectResource> project;

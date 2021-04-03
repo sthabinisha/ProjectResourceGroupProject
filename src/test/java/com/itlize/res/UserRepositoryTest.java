@@ -28,8 +28,9 @@ public class UserRepositoryTest {
     public void testCreateUser(){
         User user = new User();
         user.setUsername("binisha");
-        user.setFirstName("Binisha");
-        user.setLastName("Shrestha");
+        user.setTitle("Eng");
+        user.setLastUpdated(Calendar.getInstance().getTime());
+
         user.setCreatedDate(Calendar.getInstance().getTime());
         user.setRole("Engineer");
         user.setPassword("binsiha");

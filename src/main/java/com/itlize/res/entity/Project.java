@@ -24,16 +24,17 @@ public class Project {
     @JoinColumn(name="owner")
     private User owner;
 
+    @OneToOne(fetch=FetchType.LAZY,
+            mappedBy="project",
+            cascade= CascadeType.ALL)
+    private ProjectColumns projectColumns;
+
+
     @OneToMany(fetch=FetchType.LAZY,
             mappedBy="project",
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
     private List<ProjectResource> projectResources;
-
-    @OneToMany(fetch=FetchType.LAZY,
-            mappedBy="project",
-            cascade= CascadeType.ALL)
-    private List<ProjectColumns> projectColumns;
 
     public List<ProjectResource> getProjectResources() {
         return projectResources;
@@ -43,11 +44,11 @@ public class Project {
         this.projectResources = projectResources;
     }
 
-    public List<ProjectColumns> getProjectColumns() {
+    public ProjectColumns getProjectColumns() {
         return projectColumns;
     }
 
-    public void setProjectColumns(List<ProjectColumns> projectColumns) {
+    public void setProjectColumns(ProjectColumns projectColumns) {
         this.projectColumns = projectColumns;
     }
 

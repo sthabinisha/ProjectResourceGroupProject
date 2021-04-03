@@ -27,6 +27,7 @@ public class ProjectColumns {
     @Column(name= "formulaText")
     private String formulaText;
 
+
     @OneToMany(fetch=FetchType.LAZY,
             mappedBy="projectCol",
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
