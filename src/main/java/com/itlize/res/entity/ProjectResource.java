@@ -1,55 +1,77 @@
 package com.itlize.res.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 public class ProjectResource {
     @Id
     @GeneratedValue(strategy=IDENTITY)
-    @Column(nullable = false, updatable = false, name="prID")
+    @Column(nullable = false, updatable = false, name="record_Id")
+    private Integer recordId;
 
-    private Integer prID;
-    @Column(name="pID")
-    private Integer pID;
-    @Column(name="rID")
-    private Integer rID;
+    @Column(name= "dateCreated")
+    private Date dateCreated;
 
-    public ProjectResource(Integer pID, Integer rID) {
-        this.pID = pID;
-        this.rID = rID;
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name="projectID")
+    private Project projectID;
+
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name="resourceID")
+    private Resource resourceID;
+
+    public ProjectResource() {
     }
 
-    public ProjectResource(Integer prID, Integer pID, Integer rID) {
-        this.prID = prID;
-        this.pID = pID;
-        this.rID = rID;
+    public ProjectResource(Integer recordId, Date dateCreated, Project projectID, Resource resourceID) {
+        this.recordId = recordId;
+        this.dateCreated = dateCreated;
+        this.projectID = projectID;
+        this.resourceID = resourceID;
     }
 
-    public Integer getPrID() {
-        return prID;
+    public Integer getRecordId() {
+        return recordId;
     }
 
-    public void setPrID(Integer prID) {
-        this.prID = prID;
+    public void setRecordId(Integer recordId) {
+        this.recordId = recordId;
     }
 
-    public Integer getpID() {
-        return pID;
+    public Date getDateCreated() {
+        return dateCreated;
     }
 
-    public void setpID(Integer pID) {
-        this.pID = pID;
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
-    public Integer getrID() {
-        return rID;
+    public Project getProjectID() {
+        return projectID;
     }
 
-    public void setrID(Integer rID) {
-        this.rID = rID;
+    public void setProjectID(Project projectID) {
+        this.projectID = projectID;
+    }
+
+    public Resource getResourceID() {
+        return resourceID;
+    }
+
+    public void setResourceID(Resource resourceID) {
+        this.resourceID = resourceID;
+    }
+
+    @Override
+    public String toString() {
+        return "ProjectResource{" +
+                "recordId=" + recordId +
+                ", dateCreated=" + dateCreated +
+                ", projectID=" + projectID +
+                ", resourceID=" + resourceID +
+                '}';
     }
 }

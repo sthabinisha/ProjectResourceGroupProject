@@ -12,10 +12,7 @@ public interface UserService{
 
     public List<User> getAllUsers ();
     String deleteUserByID(Integer pID);
-
     public User getUserName(Integer userId);
-    public User getUserByName(String userName);
-
     User UpdateUser(User user);
     public User saveUser(User user);
 }

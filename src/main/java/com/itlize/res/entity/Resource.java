@@ -2,6 +2,9 @@ package com.itlize.res.entity;
 
 import javax.persistence.*;
 
+import java.util.Date;
+import java.util.List;
+
 import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 public class Resource {
@@ -11,53 +14,72 @@ public class Resource {
     @Column(nullable = false, updatable = false, name="resourceId")
     private Integer resourceID;
 
-    @Column(name = "resource")
-    private String Resource;
 
-    @Column(name = "resourceCode")
-    private Integer resourceCode;
 
-    public Resource(int resourceID, String resource, int resourceCode) {
+    @Column(name = "timeCreated")
+    private Date timeCreated;
+
+    @Column(name = "lastUpdated")
+    private Date lastUpdated;
+
+    @OneToOne(fetch=FetchType.LAZY,
+            mappedBy="Resource",
+            cascade= CascadeType.ALL)
+    @JoinColumn(name="resourceDetail")
+    private ResourceDetails resourceDetails;
+
+    @OneToMany(fetch=FetchType.LAZY,
+            mappedBy="resources",
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    private List<ProjectResource> project;
+
+    public Resource() {
+    }
+
+    public Resource(Integer resourceID, Date timeCreated, Date lastUpdated) {
         this.resourceID = resourceID;
-        Resource = resource;
-        this.resourceCode = resourceCode;
+        this.timeCreated = timeCreated;
+        this.lastUpdated = lastUpdated;
     }
 
-    public Resource(String resource, int resourceCode) {
-        Resource = resource;
-        this.resourceCode = resourceCode;
-    }
-
-    public int getResourceID() {
+    public Integer getResourceID() {
         return resourceID;
     }
 
-    public void setResourceID(int resourceID) {
+    public void setResourceID(Integer resourceID) {
         this.resourceID = resourceID;
     }
 
-    public String getResource() {
-        return Resource;
+    public Date getTimeCreated() {
+        return timeCreated;
     }
 
-    public void setResource(String resource) {
-        Resource = resource;
+    public void setTimeCreated(Date timeCreated) {
+        this.timeCreated = timeCreated;
     }
 
-    public int getResourceCode() {
-        return resourceCode;
+    public ResourceDetails getResourceDetails() {
+        return resourceDetails;
     }
 
-    public void setResourceCode(int resourceCode) {
-        this.resourceCode = resourceCode;
+    public void setResourceDetails(ResourceDetails resourceDetails) {
+        this.resourceDetails = resourceDetails;
     }
 
-    @Override
-    public String toString() {
-        return "Resource{" +
-                "resourceID=" + resourceID +
-                ", Resource='" + Resource + '\'' +
-                ", resourceCode=" + resourceCode +
-                '}';
+    public List<ProjectResource> getProject() {
+        return project;
+    }
+
+    public void setProject(List<ProjectResource> project) {
+        this.project = project;
+    }
+
+    public Date getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 }

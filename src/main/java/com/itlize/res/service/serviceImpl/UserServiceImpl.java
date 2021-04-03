@@ -2,6 +2,7 @@ package com.itlize.res.service.serviceImpl;
 
 import com.itlize.res.entity.Project;
 import com.itlize.res.entity.User;
+import com.itlize.res.exception.UserNotFoundException;
 import com.itlize.res.repository.UserRepository;
 import com.itlize.res.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,21 +32,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserName(Integer userId) {
-        return userRepository.findById(userId).orElse(null);
+        return userRepository.findById(userId) .orElseThrow(()-> new UserNotFoundException("User by userId: "+ userId+ " was not found"));
 
     }
 
-    @Override
-    public User getUserByName(String userName) {
-        return userRepository.findByUserName(userName);
-    }
+
 
     @Override
     public User UpdateUser(User user) {
         User existingUser = userRepository.findById(user.getUserID()).orElse(null);
         existingUser.setFirstName(user.getFirstName());
         existingUser.setLastName(user.getLastName());
-        existingUser.setTitle(user.getTitle());
+        existingUser.setRole(user.getRole());
 
         existingUser.setUsername(user.getUsername());
 

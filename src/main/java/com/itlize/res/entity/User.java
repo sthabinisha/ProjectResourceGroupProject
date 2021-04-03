@@ -1,10 +1,8 @@
 package com.itlize.res.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 @Entity
@@ -19,37 +17,57 @@ public class User {
     private String username;
     @Column(name="password")
     private String password;
-    @Column(name="firstName")
-    private String firstName;
-
-    @Column(name="lastName")
-    private String lastName;
-
     @Column(name="title")
     private String title;
+    @Column(name="email")
+    private String email;
+    @Column(name="role")
+    private String role;
     @Column(name="createdDate")
-
     private Date createdDate;
+
+    @Column(name="lastUpdated")
+    private Date lastUpdated;
+
+    @OneToMany(fetch=FetchType.LAZY,
+            mappedBy="user",
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    private List<Project> project;
+
+    public List<Project> getProject() {
+        return project;
+    }
+
+    public void setProject(List<Project> project) {
+        this.project = project;
+    }
 
     public User(){
 
     }
-    public User(String username, Integer userID, String password, String firstName, String lastName, String title, Date createdDate) {
-        this.username = username;
+
+    public User(Integer userID, String username, String password, String title, String email, String role, Date createdDate, Date lastUpdated) {
         this.userID = userID;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.title = title;
-        this.createdDate = createdDate;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
         this.username = username;
+        this.password = password;
+        this.title = title;
+        this.email = email;
+        this.role = role;
+        this.createdDate = createdDate;
+        this.lastUpdated = lastUpdated;
+    }
+
+    public User(Integer userID, String username, String password, String title, String email, String role, Date createdDate, Date lastUpdated, List<Project> project) {
+        this.userID = userID;
+        this.username = username;
+        this.password = password;
+        this.title = title;
+        this.email = email;
+        this.role = role;
+        this.createdDate = createdDate;
+        this.lastUpdated = lastUpdated;
+        this.project = project;
     }
 
     public Integer getUserID() {
@@ -60,28 +78,20 @@ public class User {
         this.userID = userID;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getTitle() {
@@ -92,6 +102,22 @@ public class User {
         this.title = title;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public Date getCreatedDate() {
         return createdDate;
     }
@@ -100,16 +126,26 @@ public class User {
         this.createdDate = createdDate;
     }
 
+    public Date getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
-                ", userID=" + userID +
+                "userID=" + userID +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
                 ", title='" + title + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
                 ", createdDate=" + createdDate +
+                ", lastUpdated=" + lastUpdated +
+                ", project=" + project +
                 '}';
     }
 }
