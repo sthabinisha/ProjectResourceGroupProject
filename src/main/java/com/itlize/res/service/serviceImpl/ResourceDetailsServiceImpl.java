@@ -1,7 +1,9 @@
 package com.itlize.res.service.serviceImpl;
 
 import com.itlize.res.entity.ResourceDetails;
+import com.itlize.res.repository.ResourceDetailsRepository;
 import com.itlize.res.service.ResourceDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -10,15 +12,18 @@ import java.util.List;
 public class ResourceDetailsServiceImpl implements ResourceDetailsService {
 
 
+    @Autowired
+    ResourceDetailsRepository resourceDetailsRepository;
 
     @Override
     public List<ResourceDetails> getAllResourcesDetails() {
-        return null;
+        return resourceDetailsRepository.findAll();
     }
 
     @Override
     public String deleteAllResourceDetailsByID(Integer recordId) {
-        return null;
+        resourceDetailsRepository.deleteById(recordId);
+        return "Deleted resource details by ID: "+ recordId;
     }
 
     @Override

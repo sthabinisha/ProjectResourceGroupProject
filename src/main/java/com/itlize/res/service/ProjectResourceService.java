@@ -11,8 +11,6 @@ import java.util.List;
 @Service
 public interface ProjectResourceService {
     public List<ProjectResource> getAllProjectResources();
-    Integer getResourceId(Integer recordId);
-    Integer getProjectId(Integer recordId);
-    Date getTimeCreated(Integer recordId);
-    ProjectResource deleteProjectDetails(Integer recordid);
+
+    String deleteProjectDetails(Integer recordid);
 }

@@ -8,10 +8,7 @@ import java.util.List;
 
 public interface ProjectColumnsService {
     public List<ProjectColumns> getAllProjectColumns ();
-    String deleteAllprojectColByID(Integer columnId);
-    String getformulaTextbyId(Integer columnId);
 
-    String getColumnNameByColumnId(Integer columnId);
     ProjectColumns addResourceDetails(ProjectColumns projectColumns);
-    ProjectColumns updateResourceDetail(Integer columnId);
+    ProjectColumns updateResourceDetail(ProjectColumns projectColumns);
 }
