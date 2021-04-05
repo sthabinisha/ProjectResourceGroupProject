@@ -14,24 +14,24 @@ public class Project {
     @Id
     @GeneratedValue(strategy=IDENTITY)
     @Column(nullable = false, updatable = false, name="projectId")
-    private Integer projectID;
+    private Integer projectId;
 
 
     @Column(name="timeCreated")
     private Date timeCreated;
 
     @ManyToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name="owner")
-    private User owner;
+    @JoinColumn(name="userId")
+    private User userId;
 
     @OneToOne(fetch=FetchType.LAZY,
-            mappedBy="project",
+            mappedBy="projectId",
             cascade= CascadeType.ALL)
     private ProjectColumns projectColumns;
 
 
     @OneToMany(fetch=FetchType.LAZY,
-            mappedBy="project",
+            mappedBy="projectId",
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
     private List<ProjectResource> projectResources;
@@ -58,11 +58,11 @@ public class Project {
 
 
     public Integer getProjectID() {
-        return projectID;
+        return projectId;
     }
 
     public void setProjectID(Integer projectID) {
-        this.projectID = projectID;
+        this.projectId = projectID;
     }
 
     public Date getTimeCreated() {
@@ -74,19 +74,19 @@ public class Project {
     }
 
     public User getOwner() {
-        return owner;
+        return userId;
     }
 
     public void setOwner(User owner) {
-        this.owner = owner;
+        this.userId = owner;
     }
 
     @Override
     public String toString() {
         return "Project{" +
-                "projectID=" + projectID +
+                "projectID=" + projectId +
                 ", timeCreated=" + timeCreated +
-                ", owner=" + owner +
+                ", owner=" + userId +
                 '}';
     }
 }

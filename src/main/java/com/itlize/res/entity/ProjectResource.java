@@ -16,12 +16,12 @@ public class ProjectResource {
     private Date dateCreated;
 
     @ManyToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name="projectID")
-    private Project projectID;
+    @JoinColumn(name="projectId")
+    private Project projectId;
 
     @ManyToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name="resourceID")
-    private Resource resourceID;
+    @JoinColumn(name="resourceId")
+    private Resource resourceId;
 
     public ProjectResource() {
     }
@@ -29,8 +29,8 @@ public class ProjectResource {
     public ProjectResource(Integer recordId, Date dateCreated, Project projectID, Resource resourceID) {
         this.recordId = recordId;
         this.dateCreated = dateCreated;
-        this.projectID = projectID;
-        this.resourceID = resourceID;
+        this.projectId = projectID;
+        this.resourceId = resourceID;
     }
 
     public Integer getRecordId() {
@@ -50,19 +50,19 @@ public class ProjectResource {
     }
 
     public Project getProjectID() {
-        return projectID;
+        return projectId;
     }
 
     public void setProjectID(Project projectID) {
-        this.projectID = projectID;
+        this.projectId = projectID;
     }
 
     public Resource getResourceID() {
-        return resourceID;
+        return resourceId;
     }
 
     public void setResourceID(Resource resourceID) {
-        this.resourceID = resourceID;
+        this.resourceId = resourceID;
     }
 
     @Override
@@ -70,8 +70,8 @@ public class ProjectResource {
         return "ProjectResource{" +
                 "recordId=" + recordId +
                 ", dateCreated=" + dateCreated +
-                ", projectID=" + projectID +
-                ", resourceID=" + resourceID +
+                ", projectID=" + projectId +
+                ", resourceID=" + resourceId +
                 '}';
     }
 }

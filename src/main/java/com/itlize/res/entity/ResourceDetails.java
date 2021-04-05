@@ -22,7 +22,7 @@ public class ResourceDetails {
 
     @OneToOne(cascade= CascadeType.ALL)
     @JoinColumn(name= "resourceId")
-    private Resource resource;
+    private Resource resourceId;
 
     @Column(name="columnValue")
     private String columnValue;
@@ -32,7 +32,7 @@ public class ResourceDetails {
     private ProjectColumns projectColumns;
 
     @OneToMany(fetch=FetchType.LAZY,
-            mappedBy="projectCol",
+            mappedBy="recordId",
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
     private List<ProjectColumns> projectColumnsList;
@@ -63,11 +63,11 @@ public class ResourceDetails {
     }
 
     public Resource getResource() {
-        return resource;
+        return resourceId;
     }
 
     public void setResource(Resource resource) {
-        this.resource = resource;
+        this.resourceId = resource;
     }
 
     public String getColumnValue() {

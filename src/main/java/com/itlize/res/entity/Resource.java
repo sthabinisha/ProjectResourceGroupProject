@@ -12,7 +12,7 @@ public class Resource {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false, name="resourceId")
-    private Integer resourceID;
+    private Integer resourceId;
 
     @Column(name = "timeCreated")
     private Date timeCreated;
@@ -21,12 +21,12 @@ public class Resource {
     private Date lastUpdated;
 
     @OneToOne(fetch=FetchType.LAZY,
-            mappedBy="Resource",
+            mappedBy="resourceId",
             cascade= CascadeType.ALL)
     private ResourceDetails resourceDetails;
 
     @OneToMany(fetch=FetchType.LAZY,
-            mappedBy="resource",
+            mappedBy="resourceId",
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
     private List<ProjectResource> project;
@@ -35,17 +35,17 @@ public class Resource {
     }
 
     public Resource(Integer resourceID, Date timeCreated, Date lastUpdated) {
-        this.resourceID = resourceID;
+        this.resourceId = resourceID;
         this.timeCreated = timeCreated;
         this.lastUpdated = lastUpdated;
     }
 
     public Integer getResourceID() {
-        return resourceID;
+        return resourceId;
     }
 
     public void setResourceID(Integer resourceID) {
-        this.resourceID = resourceID;
+        this.resourceId = resourceID;
     }
 
     public Date getTimeCreated() {

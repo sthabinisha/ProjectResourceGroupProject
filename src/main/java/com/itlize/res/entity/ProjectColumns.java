@@ -15,7 +15,7 @@ public class ProjectColumns {
 
     @OneToOne(cascade= CascadeType.ALL)
     @JoinColumn(name= "projectId")
-    private Project project;
+    private Project projectId;
 
     @Column(name = "projectName")
     private String projectName;
@@ -29,7 +29,7 @@ public class ProjectColumns {
 
 
     @OneToMany(fetch=FetchType.LAZY,
-            mappedBy="projectCol",
+            mappedBy="recordId",
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
     private List<ResourceDetails> resourceDetails;
@@ -44,11 +44,11 @@ public class ProjectColumns {
     }
 
     public Project getProject() {
-        return project;
+        return projectId;
     }
 
     public void setProject(Project project) {
-        this.project = project;
+        this.projectId = project;
     }
 
     public String getProjectName() {

@@ -12,7 +12,7 @@ public class User {
     @Id
     @GeneratedValue(strategy=IDENTITY)
     @Column(nullable = false, updatable = false, name="userId")
-    private Integer userID;
+    private Integer userId;
     @Column(name="username")
     private String username;
     @Column(name="password")
@@ -30,7 +30,7 @@ public class User {
     private Date lastUpdated;
 
     @OneToMany(fetch=FetchType.LAZY,
-            mappedBy="user",
+            mappedBy="userId",
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
     private List<Project> project;
@@ -48,7 +48,7 @@ public class User {
     }
 
     public User(Integer userID, String username, String password, String title, String email, String role, Date createdDate, Date lastUpdated) {
-        this.userID = userID;
+        this.userId = userID;
         this.username = username;
         this.password = password;
         this.title = title;
@@ -59,7 +59,7 @@ public class User {
     }
 
     public User(Integer userID, String username, String password, String title, String email, String role, Date createdDate, Date lastUpdated, List<Project> project) {
-        this.userID = userID;
+        this.userId = userID;
         this.username = username;
         this.password = password;
         this.title = title;
@@ -71,11 +71,11 @@ public class User {
     }
 
     public Integer getUserID() {
-        return userID;
+        return userId;
     }
 
     public void setUserID(Integer userID) {
-        this.userID = userID;
+        this.userId = userID;
     }
 
     public String getUsername() {
@@ -137,7 +137,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "userID=" + userID +
+                "userID=" + userId +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", title='" + title + '\'' +
