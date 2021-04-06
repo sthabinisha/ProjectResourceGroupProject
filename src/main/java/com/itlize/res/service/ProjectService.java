@@ -13,5 +13,5 @@ public interface ProjectService {
     void deleteAllProjectbyID(Integer pID);
 
     void getProjectName(Integer pID);
-    Project addProjectResource(Project project);
+    Project addProject(Project project);
 }

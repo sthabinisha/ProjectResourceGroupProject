@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
-    void deleteProjectRepositoryById(Long id);
+    //void deleteProjectRepositoryById(Integer id);
 }

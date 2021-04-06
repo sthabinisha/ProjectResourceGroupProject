@@ -55,7 +55,13 @@ public class Project {
     public Project() {
     }
 
-
+    public Project(Integer projectId, Date timeCreated, User userId, ProjectColumns projectColumns, List<ProjectResource> projectResources) {
+        this.projectId = projectId;
+        this.timeCreated = timeCreated;
+        this.userId = userId;
+        this.projectColumns = projectColumns;
+        this.projectResources = projectResources;
+    }
 
     public Integer getProjectID() {
         return projectId;

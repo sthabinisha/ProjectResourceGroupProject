@@ -15,23 +15,20 @@ public class ProjectResource {
     @Column(name= "dateCreated")
     private Date dateCreated;
 
-    @ManyToOne(cascade= CascadeType.ALL)
+//    @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name="projectId")
-    private Project projectId;
+    private Integer projectId;
 
-    @ManyToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name="resourceId")
-    private Resource resourceId;
+//    @ManyToOne(cascade= CascadeType.ALL)
+//    @JoinColumn(name="resourceId", foreignKey = @ForeignKey)
+    @JoinColumn(name = "resourceId",foreignKey = @ForeignKey(name ="resourceId",
+                                            value = ConstraintMode.NO_CONSTRAINT))
+    private Resource resource;
 
     public ProjectResource() {
     }
 
-    public ProjectResource(Integer recordId, Date dateCreated, Project projectID, Resource resourceID) {
-        this.recordId = recordId;
-        this.dateCreated = dateCreated;
-        this.projectId = projectID;
-        this.resourceId = resourceID;
-    }
+
 
     public Integer getRecordId() {
         return recordId;

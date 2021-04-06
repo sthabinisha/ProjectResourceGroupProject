@@ -47,8 +47,8 @@ public class User {
 
     }
 
-    public User(Integer userID, String username, String password, String title, String email, String role, Date createdDate, Date lastUpdated) {
-        this.userId = userID;
+    public User(String username, String password, String title, String email, String role, Date createdDate, Date lastUpdated) {
+
         this.username = username;
         this.password = password;
         this.title = title;
