@@ -1,6 +1,7 @@
 package com.itlize.res.service.serviceImpl;
 
 import com.itlize.res.entity.Project;
+import com.itlize.res.entity.ProjectColumns;
 import com.itlize.res.entity.Resource;
 import com.itlize.res.repository.ResourcesRepository;
 import com.itlize.res.service.ResourceService;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ResourceServiceImpl implements ResourceService {
 
@@ -25,12 +28,19 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
     @Override
-    public void getResourceName(Integer pID) {
-
+    public Optional<Resource> getResourcesById(Integer resoureceId) {
+        return resourcesRepository.findById(resoureceId);
     }
 
     @Override
-    public Project addResource(Resource resource) {
-        return null;
+    public Resource getResourceById(Integer pID) {
+        return resourcesRepository.findResourcesByResourceId(pID);
+    }
+
+
+
+    @Override
+    public Resource addResource(Resource resource) {
+        return resourcesRepository.save(resource);
     }
 }

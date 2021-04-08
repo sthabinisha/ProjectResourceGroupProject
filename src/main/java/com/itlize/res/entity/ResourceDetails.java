@@ -11,31 +11,28 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class ResourceDetails {
     @Id
     @GeneratedValue(strategy=IDENTITY)
-    @Column(nullable = false, updatable = false, name="recordId")
+    @Column(nullable = false, updatable = false, name="record_id")
     private Integer recordId;
 
-    @Column(name="timeCreated")
+    @Column(name="time_created")
     private Date timeCreated;
 
-    @Column(name="lastUpdated")
+    @Column(name="last_updated")
     private Date lastUpdated;
 
-    @OneToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name= "resourceId")
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name= "resource_id")
     private Resource resourceId;
 
-    @Column(name="columnValue")
+    @Column(name="column_value")
     private String columnValue;
 
     @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name="column_id")
-    private ProjectColumns projectColumns;
+    private ProjectColumns columnId;
 
-    @OneToMany(fetch=FetchType.LAZY,
-            mappedBy="recordId",
-            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
-    private List<ProjectColumns> projectColumnsList;
+
+
 
 
     public Integer getRecordId() {
@@ -78,19 +75,21 @@ public class ResourceDetails {
         this.columnValue = columnValue;
     }
 
-    public ProjectColumns getProjectColumns() {
-        return projectColumns;
+    public Resource getResourceId() {
+        return resourceId;
     }
 
-    public void setProjectColumns(ProjectColumns projectColumns) {
-        this.projectColumns = projectColumns;
+    public void setResourceId(Resource resourceId) {
+        this.resourceId = resourceId;
     }
 
-    public List<ProjectColumns> getProjectColumnsList() {
-        return projectColumnsList;
+    public ProjectColumns getColumnId() {
+        return columnId;
     }
 
-    public void setProjectColumnsList(List<ProjectColumns> projectColumnsList) {
-        this.projectColumnsList = projectColumnsList;
+    public void setColumnId(ProjectColumns columnId) {
+        this.columnId = columnId;
     }
+
+
 }

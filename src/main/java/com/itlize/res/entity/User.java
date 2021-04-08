@@ -1,5 +1,7 @@
 package com.itlize.res.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -11,7 +13,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy=IDENTITY)
-    @Column(nullable = false, updatable = false, name="userId")
+    @Column(nullable = false, updatable = false, name="user_id")
     private Integer userId;
     @Column(name="username")
     private String username;
@@ -23,16 +25,17 @@ public class User {
     private String email;
     @Column(name="role")
     private String role;
-    @Column(name="createdDate")
+    @Column(name="created_date")
     private Date createdDate;
 
-    @Column(name="lastUpdated")
+    @Column(name="last_updated")
     private Date lastUpdated;
 
     @OneToMany(fetch=FetchType.LAZY,
             mappedBy="userId",
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
+    @JsonIgnore
     private List<Project> project;
 
     public List<Project> getProject() {

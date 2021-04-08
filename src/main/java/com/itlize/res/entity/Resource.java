@@ -1,5 +1,7 @@
 package com.itlize.res.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.util.Date;
@@ -11,25 +13,27 @@ public class Resource {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false, name="resourceId")
+    @Column(nullable = false, updatable = false, name="resource_id")
     private Integer resourceId;
 
-    @Column(name = "timeCreated")
+    @Column(name = "time_created")
     private Date timeCreated;
 
-    @Column(name = "lastUpdated")
+    @Column(name = "last_updated")
     private Date lastUpdated;
 
-    @OneToOne(fetch=FetchType.LAZY,
-            mappedBy="resourceId",
-            cascade= CascadeType.ALL)
-    private ResourceDetails resourceDetails;
-
+    @JsonIgnore
     @OneToMany(fetch=FetchType.LAZY,
             mappedBy="resourceId",
-            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
-    private List<ProjectResource> project;
+            cascade= CascadeType.ALL)
+    private List<ResourceDetails> resourceDetailsList;
+    @JsonIgnore
+    @OneToMany(fetch=FetchType.LAZY,
+            mappedBy="resourceId",
+            cascade= CascadeType.ALL)
+    private List<ProjectResource> projectResourceList;
+
+
 
     public Resource() {
     }
@@ -56,21 +60,30 @@ public class Resource {
         this.timeCreated = timeCreated;
     }
 
-    public ResourceDetails getResourceDetails() {
-        return resourceDetails;
+    public Integer getResourceId() {
+        return resourceId;
     }
 
-    public void setResourceDetails(ResourceDetails resourceDetails) {
-        this.resourceDetails = resourceDetails;
+    public void setResourceId(Integer resourceId) {
+        this.resourceId = resourceId;
     }
 
-    public List<ProjectResource> getProject() {
-        return project;
+    public List<ResourceDetails> getResourceDetailsList() {
+        return resourceDetailsList;
     }
 
-    public void setProject(List<ProjectResource> project) {
-        this.project = project;
+    public void setResourceDetailsList(List<ResourceDetails> resourceDetailsList) {
+        this.resourceDetailsList = resourceDetailsList;
     }
+
+    public List<ProjectResource> getProjectResourceList() {
+        return projectResourceList;
+    }
+
+    public void setProjectResourceList(List<ProjectResource> projectResourceList) {
+        this.projectResourceList = projectResourceList;
+    }
+
 
     public Date getLastUpdated() {
         return lastUpdated;

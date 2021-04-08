@@ -9,26 +9,29 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class ProjectResource {
     @Id
     @GeneratedValue(strategy=IDENTITY)
-    @Column(nullable = false, updatable = false, name="record_Id")
+    @Column(nullable = false, updatable = false, name="record_id")
     private Integer recordId;
 
-    @Column(name= "dateCreated")
+    @Column(name= "date_created")
     private Date dateCreated;
 
-//    @ManyToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name="projectId")
-    private Integer projectId;
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name="project_id")
+    private Project projectId;
 
-//    @ManyToOne(cascade= CascadeType.ALL)
-//    @JoinColumn(name="resourceId", foreignKey = @ForeignKey)
-    @JoinColumn(name = "resourceId",foreignKey = @ForeignKey(name ="resourceId",
-                                            value = ConstraintMode.NO_CONSTRAINT))
-    private Resource resource;
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name="resource_id")
+    private Resource resourceId;
 
     public ProjectResource() {
     }
 
-
+    public ProjectResource(Integer recordId, Date dateCreated, Project projectID, Resource resourceID) {
+        this.recordId = recordId;
+        this.dateCreated = dateCreated;
+        this.projectId = projectID;
+        this.resourceId = resourceID;
+    }
 
     public Integer getRecordId() {
         return recordId;

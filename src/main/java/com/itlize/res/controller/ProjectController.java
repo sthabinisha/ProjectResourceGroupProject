@@ -3,6 +3,7 @@ package com.itlize.res.controller;
 import com.itlize.res.entity.Project;
 import com.itlize.res.entity.User;
 import com.itlize.res.service.ProjectService;
+import com.itlize.res.service.UserService;
 import com.itlize.res.service.serviceImpl.ProjectServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,25 +17,42 @@ import java.util.List;
 @RequestMapping("/project")
 public class ProjectController {
 
-//    public ProjectController() {
-//    }
     @Autowired
     private ProjectService projectService;
+    @Autowired
+    private UserService userService;
 
-
-    @GetMapping
+    @GetMapping("viewall")
     public ResponseEntity<List<Project>> getAllProject(){
         List<Project> allProject =  projectService.getAllProject();
-
         return new ResponseEntity<>(allProject, HttpStatus.OK);
-
     }
 
+    @GetMapping("/find/{project_id}")
+    public ResponseEntity<Project> getProjectById(@PathVariable("project_id") Integer id){
+        Project project = projectService.getProjectById(id);
+        return new ResponseEntity<>(project, HttpStatus.OK);
+    }
     @PostMapping("/addproject")
     public ResponseEntity<Project> addProject(@RequestBody Project project){
 
+        User user = userService.getUserByID(project.getUserId().getUserID()).orElse(null);
+        project.setUserId(user);
         Project newProject = projectService.addProject(project);
         return new ResponseEntity<>(newProject, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/delete/{project_id}")
+    public ResponseEntity<String> deleteById(@PathVariable("project_id") Integer projectId){
+        String deleteProject=  "Project removed !! " + projectId;
+        userService.deleteUserByID(projectId);
+        return new ResponseEntity<>( deleteProject, HttpStatus.OK);
+
+    }
+
+
+
+
+
 
 }

@@ -1,5 +1,6 @@
 package com.itlize.res.service;
 
+import com.itlize.res.entity.Project;
 import com.itlize.res.entity.ProjectColumns;
 import com.itlize.res.entity.ResourceDetails;
 
@@ -8,7 +9,10 @@ import java.util.List;
 
 public interface ProjectColumnsService {
     public List<ProjectColumns> getAllProjectColumns ();
+    public ProjectColumns getProjectColumnById(Integer column_id);
+    String deleteProjectColumnbyID(Integer pID);
 
-    ProjectColumns addResourceDetails(ProjectColumns projectColumns);
-    ProjectColumns updateResourceDetail(ProjectColumns projectColumns);
+
+    ProjectColumns addProjectColumn(ProjectColumns projectColumns);
+    ProjectColumns updateProjectColumn(ProjectColumns projectColumns);
 }

@@ -1,5 +1,6 @@
 package com.itlize.res.service.serviceImpl;
 
+import com.itlize.res.entity.Project;
 import com.itlize.res.entity.ProjectColumns;
 import com.itlize.res.repository.ProjectColumnsRepository;
 import com.itlize.res.repository.ProjectRepository;
@@ -24,14 +25,24 @@ public class ProjectColumnServiceImpl implements ProjectColumnsService {
     }
 
 
+    @Override
+    public ProjectColumns getProjectColumnById(Integer id) {
+        return projectColumnsRepository.findProjectColumnsByColumnId(id);
+    }
+
 
     @Override
-    public ProjectColumns addResourceDetails(ProjectColumns projectColumns) {
+    public ProjectColumns addProjectColumn(ProjectColumns projectColumns) {
         return projectColumnsRepository.save(projectColumns);
     }
 
     @Override
-    public ProjectColumns updateResourceDetail(ProjectColumns projectColumns) {
+    public ProjectColumns updateProjectColumn(ProjectColumns projectColumns) {
         return projectColumnsRepository.save(projectColumns);
+    }
+    @Override
+    public String deleteProjectColumnbyID(Integer pID) {
+        return projectColumnsRepository.deleteProjectColumnsByColumnId(pID);
+
     }
 }

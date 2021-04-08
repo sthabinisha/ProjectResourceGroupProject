@@ -10,8 +10,9 @@ import java.util.List;
 public interface ProjectService {
 
     public List<Project> getAllProject ();
-    void deleteAllProjectbyID(Integer pID);
+    String deleteAllProjectbyID(Integer cID);
 
     void getProjectName(Integer pID);
     Project addProject(Project project);
+    Project getProjectById(Integer pId);
 }

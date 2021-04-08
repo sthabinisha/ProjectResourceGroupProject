@@ -1,6 +1,8 @@
 package com.itlize.res.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.util.Date;
@@ -13,23 +15,24 @@ public class Project {
 
     @Id
     @GeneratedValue(strategy=IDENTITY)
-    @Column(nullable = false, updatable = false, name="projectId")
+    @Column(nullable = false, updatable = false, name="project_id")
     private Integer projectId;
 
 
-    @Column(name="timeCreated")
+    @Column(name="time_created")
     private Date timeCreated;
 
-    @ManyToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name="userId")
+    @ManyToOne(cascade= CascadeType.DETACH)
+    @JoinColumn(name="user_id")
     private User userId;
 
-    @OneToOne(fetch=FetchType.LAZY,
+    @JsonIgnore
+    @OneToMany(fetch=FetchType.LAZY,
             mappedBy="projectId",
             cascade= CascadeType.ALL)
-    private ProjectColumns projectColumns;
+    private List<ProjectColumns> projectColumns;
 
-
+    @JsonIgnore
     @OneToMany(fetch=FetchType.LAZY,
             mappedBy="projectId",
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
@@ -44,18 +47,11 @@ public class Project {
         this.projectResources = projectResources;
     }
 
-    public ProjectColumns getProjectColumns() {
-        return projectColumns;
-    }
-
-    public void setProjectColumns(ProjectColumns projectColumns) {
-        this.projectColumns = projectColumns;
-    }
 
     public Project() {
     }
 
-    public Project(Integer projectId, Date timeCreated, User userId, ProjectColumns projectColumns, List<ProjectResource> projectResources) {
+    public Project(Integer projectId, Date timeCreated, User userId, List<ProjectColumns> projectColumns, List<ProjectResource> projectResources) {
         this.projectId = projectId;
         this.timeCreated = timeCreated;
         this.userId = userId;
@@ -63,13 +59,14 @@ public class Project {
         this.projectResources = projectResources;
     }
 
-    public Integer getProjectID() {
-        return projectId;
+    public List<ProjectColumns> getProjectColumns() {
+        return projectColumns;
     }
 
-    public void setProjectID(Integer projectID) {
-        this.projectId = projectID;
+    public void setProjectColumns(List<ProjectColumns> projectColumns) {
+        this.projectColumns = projectColumns;
     }
+
 
     public Date getTimeCreated() {
         return timeCreated;
@@ -79,20 +76,30 @@ public class Project {
         this.timeCreated = timeCreated;
     }
 
-    public User getOwner() {
+    public Integer getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
+    }
+
+    public User getUserId() {
         return userId;
     }
 
-    public void setOwner(User owner) {
-        this.userId = owner;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     @Override
     public String toString() {
         return "Project{" +
-                "projectID=" + projectId +
+                "projectId=" + projectId +
                 ", timeCreated=" + timeCreated +
-                ", owner=" + userId +
+                ", userId=" + userId +
+                ", projectColumns=" + projectColumns +
+                ", projectResources=" + projectResources +
                 '}';
     }
 }

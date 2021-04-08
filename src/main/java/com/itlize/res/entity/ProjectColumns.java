@@ -1,5 +1,7 @@
 package com.itlize.res.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.util.List;
@@ -10,37 +12,46 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class ProjectColumns {
     @Id
     @GeneratedValue(strategy=IDENTITY)
-    @Column(nullable = false, updatable = false, name="recordId")
-    private Integer recordId;
+    @Column(nullable = false, updatable = false, name="column_id")
+    private Integer columnId;
 
-    @OneToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name= "projectId")
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name= "project_id")
     private Project projectId;
 
-    @Column(name = "projectName")
-    private String projectName;
+    @Column(name = "column_name")
+    private String columnName;
 
     @Column(name= "type")
     @Enumerated(EnumType.ORDINAL)
     private TypeEnum typeEnum;
 
-    @Column(name= "formulaText")
+    @Column(name= "formula_text")
     private String formulaText;
 
-
+    @JsonIgnore
     @OneToMany(fetch=FetchType.LAZY,
-            mappedBy="recordId",
+            mappedBy="columnId",
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
     private List<ResourceDetails> resourceDetails;
 
 
-    public Integer getRecordId() {
-        return recordId;
+
+    public Project getProjectId() {
+        return projectId;
     }
 
-    public void setRecordId(Integer recordId) {
-        this.recordId = recordId;
+    public void setProjectId(Project projectId) {
+        this.projectId = projectId;
+    }
+
+    public Integer getColumnId() {
+        return columnId;
+    }
+
+    public void setColumnId(Integer columnId) {
+        this.columnId = columnId;
     }
 
     public Project getProject() {
@@ -51,12 +62,12 @@ public class ProjectColumns {
         this.projectId = project;
     }
 
-    public String getProjectName() {
-        return projectName;
+    public String getColumnName() {
+        return columnName;
     }
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
+    public void setColumnName(String columnName) {
+        this.columnName = columnName;
     }
 
     public TypeEnum getTypeEnum() {
