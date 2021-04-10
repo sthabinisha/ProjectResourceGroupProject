@@ -82,17 +82,17 @@ public class UserController {
 //    }
 //
 //
-//    @PutMapping("/update")
-//    public ResponseEntity<User> updateUser(@RequestBody User user){
-//        User updateUser = userService.updateUser(user);
-//        return new ResponseEntity<>(updateUser, HttpStatus.OK);
-//    }
-//
-//    @DeleteMapping("/delete/{id}")
-//    public ResponseEntity<?> deleteUser(@PathVariable("id") Integer id){
-//        userService.deleteUserByID(id);
-//        return new ResponseEntity<>( HttpStatus.OK);
-//    }
+    @PutMapping("/update")
+    public ResponseEntity<User> updateUser(@RequestBody User user){
+        User updateUser = userService.updateUser(user);
+        return new ResponseEntity<>(updateUser, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable("id") Integer id){
+        userService.deleteUserByID(id);
+        return ResponseEntity.ok(new ApiResponse(true, "Successfully deleted the userID: " + id));
+    }
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
@@ -108,7 +108,7 @@ public class UserController {
 
         User user = new User(signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
-                passwordEncoder.encode(signUpRequest.getPassword()));
+                passwordEncoder.encode(signUpRequest.getPassword()), Calendar.getInstance().getTime(), Calendar.getInstance().getTime());
 
         System.out.println(user.toString());
 
@@ -125,9 +125,7 @@ public class UserController {
 
         //userRepository.save(user);
 
-        System.out.println(user.getUserID());
-
-        System.out.println(user.getUserID());
+       user.setRoles(roles);
 
 
         User result = userRepository.save(user);

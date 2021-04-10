@@ -19,7 +19,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements  UserDetailsService {
+public class UserServiceImpl implements  UserDetailsService, UserService {
 
 
     @Autowired
@@ -31,12 +31,12 @@ public class UserServiceImpl implements  UserDetailsService {
 //        return userRepository.findAll();
 //    }
 //
-//    @Override
-//    public String deleteUserByID(Integer uID) {
-//         userRepository.deleteById(uID);
-//        return "User removed !! " + uID;
-//
-//    }
+    @Override
+    public String deleteUserByID(Integer uID) {
+         userRepository.deleteById(uID);
+        return "User removed !! " + uID;
+
+    }
 
 ////    @Override
 ////    public User getUserName(Integer userId) {
@@ -46,19 +46,19 @@ public class UserServiceImpl implements  UserDetailsService {
 ////
 ////
 ////
-////    @Override
-////    public User updateUser(User user) {
-////        User existingUser = userRepository.findById(user.getUserID()).orElse(null);
-////        existingUser.setUsername(user.getUsername());
-//////        existingUser.setRole(user.getRole());
-////
-////        existingUser.setUsername(user.getUsername());
-////
-////
-////
-////        return userRepository.save(existingUser);
-////    }
-////
+    @Override
+    public User updateUser(User user) {
+        User existingUser = userRepository.findById(user.getUserID()).orElse(null);
+        existingUser.setUsername(user.getUsername());
+        existingUser.setRoles(user.getRoles());
+
+        existingUser.setUsername(user.getUsername());
+
+
+
+        return userRepository.save(existingUser);
+    }
+
 ////    @Override
 ////    public User saveUser(User user) {
 ////        return userRepository.save(user);
@@ -82,7 +82,10 @@ public class UserServiceImpl implements  UserDetailsService {
 //
 //    }
 
-   // @Override
+
+
+
+    // @Override
     @Transactional
     public UserDetails loadUserById(Integer userId) {
         User user = userRepository. findById(userId).orElseThrow(

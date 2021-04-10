@@ -3,6 +3,8 @@ package com.itlize.res.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,9 +36,12 @@ public class User{
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+    @CreatedDate
     @Column(name="created_date")
     private Date createdDate;
 
+    @LastModifiedDate
     @Column(name="last_updated")
     private Date lastUpdated;
 
@@ -83,10 +88,12 @@ public class User{
         this.project = project;
     }
 
-    public User(String username, String email, String password){
+    public User(String username, String email, String password, Date createdDate, Date lastUpdated){
         this.username = username;
         this.password = password;
         this.email = email;
+        this.createdDate = createdDate;
+        this.lastUpdated = lastUpdated;
 
     }
 

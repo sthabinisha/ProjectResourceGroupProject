@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class GenController {
 
 	@GetMapping("/user")
-	@PreAuthorize("hasRole('USER')")
+	@PreAuthorize("hasRole('role_user')")
 	public String forUser() {
 
 		return "welcome user";
 	}
 
 	@GetMapping("/admin")
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('role_admin')")
 	public String forAdmin() {
 
 		return "welcome admin";
