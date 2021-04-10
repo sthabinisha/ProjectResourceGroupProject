@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -49,7 +50,7 @@ public class UserRepositoryTest {
         user.setTitle("Eng");
         user.setLastUpdated(Calendar.getInstance().getTime());
         user.setCreatedDate(Calendar.getInstance().getTime());
-        user.setRole("Engineer");
+
         user.setPassword("binsiha");
 
         User savedUser = userRepository.save(user);

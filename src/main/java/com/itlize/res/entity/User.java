@@ -1,14 +1,20 @@
 package com.itlize.res.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static javax.persistence.GenerationType.IDENTITY;
 @Entity
-public class User {
+
+public class User{
 
 
     @Id
@@ -23,8 +29,11 @@ public class User {
     private String title;
     @Column(name="email")
     private String email;
-    @Column(name="role")
-    private String role;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
     @Column(name="created_date")
     private Date createdDate;
 
@@ -38,6 +47,34 @@ public class User {
     @JsonIgnore
     private List<Project> project;
 
+
+    public User(Integer userId, String username, String password, String title, String email, Set<Role> roles, Date createdDate, Date lastUpdated) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+        this.title = title;
+        this.email = email;
+        this.roles = roles;
+        this.createdDate = createdDate;
+        this.lastUpdated = lastUpdated;
+    }
+
+    public User() {
+
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
     public List<Project> getProject() {
         return project;
     }
@@ -46,32 +83,27 @@ public class User {
         this.project = project;
     }
 
-    public User(){
-
-    }
-
-    public User(String username, String password, String title, String email, String role, Date createdDate, Date lastUpdated) {
-
+    public User(String username, String email, String password){
         this.username = username;
         this.password = password;
-        this.title = title;
         this.email = email;
-        this.role = role;
-        this.createdDate = createdDate;
-        this.lastUpdated = lastUpdated;
+
     }
 
-    public User(Integer userID, String username, String password, String title, String email, String role, Date createdDate, Date lastUpdated, List<Project> project) {
-        this.userId = userID;
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.title = title;
-        this.email = email;
-        this.role = role;
-        this.createdDate = createdDate;
-        this.lastUpdated = lastUpdated;
-        this.project = project;
     }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+
 
     public Integer getUserID() {
         return userId;
@@ -85,9 +117,6 @@ public class User {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getPassword() {
         return password;
@@ -113,13 +142,6 @@ public class User {
         this.email = email;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public Date getCreatedDate() {
         return createdDate;
@@ -137,15 +159,16 @@ public class User {
         this.lastUpdated = lastUpdated;
     }
 
+
     @Override
     public String toString() {
         return "User{" +
-                "userID=" + userId +
+                "userId=" + userId +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", title='" + title + '\'' +
                 ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
+                ", roles=" + roles +
                 ", createdDate=" + createdDate +
                 ", lastUpdated=" + lastUpdated +
                 ", project=" + project +
