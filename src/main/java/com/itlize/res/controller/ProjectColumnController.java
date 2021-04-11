@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/projectColumn")
+@RequestMapping("/auth/api/column")
 public class ProjectColumnController {
     private final ProjectColumnsService projectColumnsService;
 

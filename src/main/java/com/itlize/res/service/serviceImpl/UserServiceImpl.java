@@ -26,16 +26,21 @@ public class UserServiceImpl implements  UserDetailsService, UserService {
     private UserRepository userRepository;
 
 
-//    @Override
-//    public List<User> getAllUsers() {
-//        return userRepository.findAll();
-//    }
-//
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
     @Override
     public String deleteUserByID(Integer uID) {
          userRepository.deleteById(uID);
         return "User removed !! " + uID;
 
+    }
+
+    @Override
+    public Optional<User> getUserByID(Integer userId) {
+        return userRepository.findById(userId);
     }
 
 ////    @Override
@@ -46,41 +51,16 @@ public class UserServiceImpl implements  UserDetailsService, UserService {
 ////
 ////
 ////
-    @Override
-    public User updateUser(User user) {
-        User existingUser = userRepository.findById(user.getUserID()).orElse(null);
-        existingUser.setUsername(user.getUsername());
-        existingUser.setRoles(user.getRoles());
 
-        existingUser.setUsername(user.getUsername());
-
-
-
-        return userRepository.save(existingUser);
-    }
 
 ////    @Override
 ////    public User saveUser(User user) {
 ////        return userRepository.save(user);
 ////    }
 ////
-////    @Override
-////    public Optional<User>  getUserByID(Integer userId) {
-////        return userRepository.findById(userId);
-////    }
-////
-////    // This method is used by JWTAuthenticationFilter
-////
-//
-//    @Override
-//    @Transactional
-//    public UserDetails loadUserByUserName(String usernameOrEmail) {
-//        User user = userRepository. findAllByUsernameOrEmail(usernameOrEmail, usernameOrEmail).orElseThrow(
-//                () -> new UsernameNotFoundException("User not found with username or email : " + usernameOrEmail));
-//
-//        return UserPrincipal.create(user);
-//
-//    }
+
+
+
 
 
 
@@ -101,5 +81,8 @@ public class UserServiceImpl implements  UserDetailsService, UserService {
                 () -> new UsernameNotFoundException("User not found with username or email : " + s));
 
         return UserPrincipal.create(user);
+    }
+
+    public void updateUser(User users) {
     }
 }

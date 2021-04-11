@@ -8,6 +8,7 @@ import com.itlize.res.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,6 +42,8 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Override
     public Resource addResource(Resource resource) {
+        resource.setTimeCreated(Calendar.getInstance().getTime());
+        resource.setLastUpdated(Calendar.getInstance().getTime());
         return resourcesRepository.save(resource);
     }
 }

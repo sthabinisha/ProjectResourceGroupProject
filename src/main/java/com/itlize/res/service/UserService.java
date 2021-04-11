@@ -10,14 +10,13 @@ import java.util.Optional;
 
 public interface UserService{
 
-//    public List<User> getAllUsers ();
+    public List<User> getAllUsers ();
     String deleteUserByID(Integer pID);
 //    public User getUserName(Integer userId);
-    User updateUser(User user);
 //    public User saveUser(User user);
-//    public Optional<User>  getUserByID(Integer userId);
+    public Optional<User>  getUserByID(Integer userId);
 //
-//    UserDetails loadUserByUserName(String username) throws UserNotFoundException;
+//    User loadUserByUserName(String username) throws UserNotFoundException;
 //
-//    UserDetails loadUserById(Integer userId);
+//    User loadUserById(Integer userId);
 }

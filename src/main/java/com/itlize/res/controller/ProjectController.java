@@ -10,12 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/project")
+@RequestMapping("/api/auth/project")
 public class ProjectController {
 
     @Autowired
@@ -34,14 +35,14 @@ public class ProjectController {
         Project project = projectService.getProjectById(id);
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
-//    @PostMapping("/addproject")
-//    public ResponseEntity<Project> addProject(@RequestBody Project project){
-//
-//        User user = userService.(project.getUserId().getUserID()).orElse(null);
-//        project.setUserId(user);
-//        Project newProject = projectService.addProject(project);
-//        return new ResponseEntity<>(newProject, HttpStatus.CREATED);
-//    }
+    @PostMapping("/add")
+    public ResponseEntity<Project> addProject(@RequestBody Project project){
+
+        User user = userService.getUserByID(project.getUserId().getUserId()).orElse(null);
+        project.setUserId(user);
+        Project newProject = projectService.addProject(project);
+        return new ResponseEntity<>(newProject, HttpStatus.CREATED);
+    }
 //
 //    @DeleteMapping("/delete/{project_id}")
 //    public ResponseEntity<String> deleteById(@PathVariable("project_id") Integer projectId){

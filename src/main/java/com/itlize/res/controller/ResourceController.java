@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/resource")
+@RequestMapping("/api/auth/resource")
 public class ResourceController {
 
     @Autowired

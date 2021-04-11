@@ -12,9 +12,6 @@ import java.util.Set;
 
 public class SignUpRequest {
 
-//	@NotBlank
-//	@Size(min = 4, max = 40)
-//	private String name;
 
 	@NotBlank
 	@Size(min = 3, max = 15)
@@ -39,13 +36,7 @@ public class SignUpRequest {
 		this.roles = roles;
 	}
 
-	//	public String getName() {
-//		return name;
-//	}
-//
-//	public void setName(String name) {
-//		this.name = name;
-//	}
+
 
 	public String getUsername() {
 		return username;

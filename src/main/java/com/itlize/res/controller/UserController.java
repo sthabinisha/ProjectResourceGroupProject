@@ -3,7 +3,6 @@ package com.itlize.res.controller;
 import com.itlize.res.entity.Role;
 import com.itlize.res.entity.RoleName;
 import com.itlize.res.entity.User;
-import com.itlize.res.exception.AppException;
 import com.itlize.res.payloads.ApiResponse;
 import com.itlize.res.payloads.JwtAuthenticationResponse;
 import com.itlize.res.payloads.LoginRequest;
@@ -11,25 +10,21 @@ import com.itlize.res.payloads.SignUpRequest;
 import com.itlize.res.repository.RoleRepository;
 import com.itlize.res.repository.UserRepository;
 import com.itlize.res.security.JwtTokenProvider;
-import com.itlize.res.service.UserService;
 import com.itlize.res.service.serviceImpl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -60,32 +55,12 @@ public class UserController {
         return "Hello world!";
     }
     
-//    @PostMapping("/add")
-//    public ResponseEntity<User> addUser(@RequestBody User user){
-//
-//        User newUser = userService.saveUser(user);
-//        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
-//    }
-//    @PreAuthorize("isAuthenticated() || hasRole('ADMIN')")
-//    @GetMapping("/all")
-//    public ResponseEntity<List<User>> findAll() {
-//        List<User> users = userService.getAllUsers();
-//        return new ResponseEntity<>(users, HttpStatus.OK);
-//
-//    }
-//
-//    @PreAuthorize("isAuthenticated() || hasRole('ADMIN')")
-//    @GetMapping("/find/{id}")
-//    public ResponseEntity<Optional<User>> getUserById(@PathVariable("id") Integer id){
-//        Optional<User>  user = userService.getUserByID(id);
-//        return new ResponseEntity<>(user, HttpStatus.OK);
-//    }
-//
-//
-    @PutMapping("/update")
-    public ResponseEntity<User> updateUser(@RequestBody User user){
-        User updateUser = userService.updateUser(user);
-        return new ResponseEntity<>(updateUser, HttpStatus.OK);
+
+    @GetMapping("/all")
+    public ResponseEntity<List<User>> findAll() {
+        List<User> users = userService.getAllUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
+
     }
 
     @DeleteMapping("/delete/{id}")
@@ -93,6 +68,8 @@ public class UserController {
         userService.deleteUserByID(id);
         return ResponseEntity.ok(new ApiResponse(true, "Successfully deleted the userID: " + id));
     }
+
+
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
@@ -115,15 +92,29 @@ public class UserController {
         Set<String> strRoles = signUpRequest.getRoles();
         Set<Role> roles = new HashSet<>();
         System.out.println(strRoles);
-        if (strRoles != null) {
-
+        if (strRoles == null) {
             Role userRole = roleRepository.findByName(RoleName.role_user)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             roles.add(userRole);
+        } else {
+            strRoles.forEach(role -> {
+                switch (role) {
+                    case "role_admin":
+                        Role adminRole = roleRepository.findByName(RoleName.role_admin)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(adminRole);
+
+                        break;
+
+                    default:
+                        Role userRole = roleRepository.findByName(RoleName.role_user)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(userRole);
+                }
+            });
         }
 
 
-        //userRepository.save(user);
 
        user.setRoles(roles);
 
@@ -136,7 +127,6 @@ public class UserController {
         System.out.println();
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
 
-       // return ResponseEntity.ok(new ApiResponse(true, "User registered successfully"));
     }
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
