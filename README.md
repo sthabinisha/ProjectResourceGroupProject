@@ -205,3 +205,85 @@ Add Resources into Project: http://localhost:5000/res/api/auth/projectres/add
     }
 }
 ```
+
+Add resourceDetails: http://localhost:5000/res/api/auth/details/add
+
+```JSOn
+{
+"columnValue": "General Conditions",
+"resourceId": {
+    "resourceId": 1
+},
+"columnId": 
+{
+    "columnId": 1
+}
+}
+```
+Result
+```JSON
+{
+    "recordId": 4,
+    "timeCreated": null,
+    "lastUpdated": null,
+    "resourceId": {
+        "resourceId": 1,
+        "timeCreated": "2021-04-11T01:28:53.722+00:00",
+        "lastUpdated": "2021-04-11T01:28:53.722+00:00",
+        "resourceID": 1
+    },
+    "columnValue": "General Conditions",
+    "columnId": {
+        "columnId": 1,
+        "projectId": {
+            "projectId": 1,
+            "timeCreated": null,
+            "userId": {
+                "userId": 11,
+                "username": "binisha",
+                "password": "$2a$10$roFHT1cZeKz41X0o96YhNOJTI8trN4ArGn2K31pYubl2M5NqEzQcq",
+                "title": null,
+                "email": "stha@gmail.com",
+                "roles": [
+                    {
+                        "id": 1,
+                        "name": "role_user"
+                    }
+                ],
+                "createdDate": "2021-04-10T21:16:12.778+00:00",
+                "lastUpdated": "2021-04-10T21:16:12.778+00:00",
+                "userID": 11
+            }
+        },
+        "columnName": null,
+        "typeEnum": null,
+        "formulaText": null,
+        "project": {
+            "projectId": 1,
+            "timeCreated": null,
+            "userId": {
+                "userId": 11,
+                "username": "binisha",
+                "password": "$2a$10$roFHT1cZeKz41X0o96YhNOJTI8trN4ArGn2K31pYubl2M5NqEzQcq",
+                "title": null,
+                "email": "stha@gmail.com",
+                "roles": [
+                    {
+                        "id": 1,
+                        "name": "role_user"
+                    }
+                ],
+                "createdDate": "2021-04-10T21:16:12.778+00:00",
+                "lastUpdated": "2021-04-10T21:16:12.778+00:00",
+                "userID": 11
+            }
+        }
+    },
+    "resource": {
+        "resourceId": 1,
+        "timeCreated": "2021-04-11T01:28:53.722+00:00",
+        "lastUpdated": "2021-04-11T01:28:53.722+00:00",
+        "resourceID": 1
+    }
+}
+```
