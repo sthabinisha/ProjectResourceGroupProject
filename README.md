@@ -163,3 +163,45 @@ Result
     }
 }
 ```
+
+
+Add Resources into Project: http://localhost:5000/res/api/auth/projectres/add
+```JSON
+{
+"resourceID": {
+    "resourceId": 1
+},
+"projectID": 
+{
+    "projectId": 1
+}
+}
+```
+```JSON
+{
+    "recordId": 3,
+    "dateCreated": "2021-04-12T01:42:37.590+00:00",
+    "projectId": {
+        "projectId": 1,
+        "timeCreated": null,
+        "userId": null
+    },
+    "resourceId": {
+        "resourceId": 1,
+        "timeCreated": null,
+        "lastUpdated": null,
+        "resourceID": 1
+    },
+    "projectID": {
+        "projectId": 1,
+        "timeCreated": null,
+        "userId": null
+    },
+    "resourceID": {
+        "resourceId": 1,
+        "timeCreated": null,
+        "lastUpdated": null,
+        "resourceID": 1
+    }
+}
+```

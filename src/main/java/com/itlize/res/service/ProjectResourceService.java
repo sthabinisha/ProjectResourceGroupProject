@@ -13,4 +13,6 @@ public interface ProjectResourceService {
     public List<ProjectResource> getAllProjectResources();
 
     String deleteProjectDetails(Integer recordid);
+
+    void addProjectResource(ProjectResource projectResource1);
 }

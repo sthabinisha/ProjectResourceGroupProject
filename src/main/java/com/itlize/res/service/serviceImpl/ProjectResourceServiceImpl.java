@@ -27,4 +27,10 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
          projectResourceRepository.deleteById(recordid);
          return "Delete project details By ID: "+ recordid;
     }
+
+    @Override
+    public void addProjectResource(ProjectResource projectResource1) {
+        projectResourceRepository.save(projectResource1);
+
+    }
 }

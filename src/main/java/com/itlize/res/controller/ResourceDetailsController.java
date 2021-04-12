@@ -52,7 +52,7 @@ public class ResourceDetailsController {
         Resource resource = resourceService.getResourcesById(resourceDetails.getResourceId().getResourceID()).orElse(null);
         resourceDetails.setResourceId(resource);
         ProjectColumns columns = projectColumns.getProjectColumnById(resourceDetails.getColumnId().getColumnId());
-        resourceDetails.setResourceId(resource);
+//        resourceDetails.setResourceId(resource);
         resourceDetails.setColumnId(columns);
         ResourceDetails newResource = resourceDetailsService.addResourceDetails(resourceDetails);
         return new ResponseEntity<>(newResource, HttpStatus.CREATED);

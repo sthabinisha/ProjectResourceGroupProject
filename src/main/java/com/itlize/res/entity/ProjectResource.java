@@ -3,6 +3,7 @@ package com.itlize.res.entity;
 import javax.persistence.*;
 
 import java.util.Date;
+import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 @Entity
@@ -15,15 +16,37 @@ public class ProjectResource {
     @Column(name= "date_created")
     private Date dateCreated;
 
-    @ManyToOne(cascade= CascadeType.ALL)
+    @ManyToOne(cascade= CascadeType.DETACH)
     @JoinColumn(name="project_id")
     private Project projectId;
 
-    @ManyToOne(cascade= CascadeType.ALL)
+    @ManyToOne(cascade= CascadeType.DETACH)
     @JoinColumn(name="resource_id")
     private Resource resourceId;
 
+    public Project getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Project projectId) {
+        this.projectId = projectId;
+    }
+
+    public Resource getResourceId() {
+        return resourceId;
+    }
+
+    public void setResourceId(Resource resourceId) {
+        this.resourceId = resourceId;
+    }
+
     public ProjectResource() {
+    }
+
+    public ProjectResource(Date time, Project projectId, Resource resourceID) {
+        this.dateCreated = time;
+        this.projectId = projectId;
+        this.resourceId = resourceID;
     }
 
     public ProjectResource(Integer recordId, Date dateCreated, Project projectID, Resource resourceID) {

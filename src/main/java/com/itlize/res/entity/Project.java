@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -37,27 +38,28 @@ public class Project {
             mappedBy="projectId",
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
-    private List<ProjectResource> projectResources;
+    private Set<ProjectResource> projectResources;
 
-    public List<ProjectResource> getProjectResources() {
+//    @ManyToMany
+//    @JoinTable(
+//            name = "project_resource",
+//            joinColumns = @JoinColumn(name = "project_id"),
+//            inverseJoinColumns = @JoinColumn(name = "resource_id"))
+//    Set<Resource> project_resource;
+
+
+    public Set<ProjectResource> getProjectResources() {
         return projectResources;
     }
 
-    public void setProjectResources(List<ProjectResource> projectResources) {
+    public void setProjectResources(Set<ProjectResource> projectResources) {
         this.projectResources = projectResources;
     }
-
 
     public Project() {
     }
 
-    public Project(Integer projectId, Date timeCreated, User userId, List<ProjectColumns> projectColumns, List<ProjectResource> projectResources) {
-        this.projectId = projectId;
-        this.timeCreated = timeCreated;
-        this.userId = userId;
-        this.projectColumns = projectColumns;
-        this.projectResources = projectResources;
-    }
+
 
     public List<ProjectColumns> getProjectColumns() {
         return projectColumns;
@@ -92,14 +94,5 @@ public class Project {
         this.userId = userId;
     }
 
-    @Override
-    public String toString() {
-        return "Project{" +
-                "projectId=" + projectId +
-                ", timeCreated=" + timeCreated +
-                ", userId=" + userId +
-                ", projectColumns=" + projectColumns +
-                ", projectResources=" + projectResources +
-                '}';
-    }
+
 }

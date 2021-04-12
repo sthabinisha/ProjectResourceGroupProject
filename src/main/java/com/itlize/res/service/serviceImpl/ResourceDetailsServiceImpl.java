@@ -38,7 +38,7 @@ public class ResourceDetailsServiceImpl implements ResourceDetailsService {
 
     @Override
     public ResourceDetails addResourceDetails(ResourceDetails resourceDetails) {
-        return null;
+        return resourceDetailsRepository.save(resourceDetails);
     }
 
     @Override

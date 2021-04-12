@@ -1,8 +1,14 @@
 package com.itlize.res.controller;
 
 import com.itlize.res.entity.Project;
+import com.itlize.res.entity.Resource;
 import com.itlize.res.entity.User;
+import com.itlize.res.repository.ProjectRepository;
+import com.itlize.res.repository.ResourcesRepository;
+import com.itlize.res.repository.RoleRepository;
+import com.itlize.res.repository.UserRepository;
 import com.itlize.res.service.ProjectService;
+import com.itlize.res.service.ResourceService;
 import com.itlize.res.service.UserService;
 import com.itlize.res.service.serviceImpl.ProjectServiceImpl;
 import com.itlize.res.service.serviceImpl.UserServiceImpl;
@@ -23,6 +29,10 @@ public class ProjectController {
     private ProjectService projectService;
     @Autowired
     private UserServiceImpl userService;
+    @Autowired
+    private ResourceService resourceService;
+
+
 
     @GetMapping("viewall")
     public ResponseEntity<List<Project>> getAllProject(){
@@ -40,9 +50,20 @@ public class ProjectController {
 
         User user = userService.getUserByID(project.getUserId().getUserId()).orElse(null);
         project.setUserId(user);
+
         Project newProject = projectService.addProject(project);
         return new ResponseEntity<>(newProject, HttpStatus.CREATED);
     }
+
+
+//    @PostMapping("/pr")
+//    public ResponseEntity<Project> addProject(@RequestBody Project project){
+//
+//        User user = userService.getUserByID(project.getUserId().getUserId()).orElse(null);
+//        project.setUserId(user);
+//        Project newProject = projectService.addProject(project);
+//        return new ResponseEntity<>(newProject, HttpStatus.CREATED);
+//    }
 //
 //    @DeleteMapping("/delete/{project_id}")
 //    public ResponseEntity<String> deleteById(@PathVariable("project_id") Integer projectId){

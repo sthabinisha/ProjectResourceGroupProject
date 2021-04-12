@@ -41,10 +41,7 @@ public class UserRepositoryTest {
     public void testCreateUser(){
         User user = new User();
         Project project = new Project();
-        ProjectColumns projectColumns = new ProjectColumns();
-        ProjectResource projectResource = new ProjectResource();
-        Resource resource = new Resource();
-        ResourceDetails resourceDetails = new ResourceDetails();
+
 
         user.setUsername("binisha");
         user.setTitle("Eng");

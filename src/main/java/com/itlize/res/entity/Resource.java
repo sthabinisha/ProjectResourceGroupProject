@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 @Entity
@@ -31,7 +32,7 @@ public class Resource {
     @OneToMany(fetch=FetchType.LAZY,
             mappedBy="resourceId",
             cascade= CascadeType.ALL)
-    private List<ProjectResource> projectResourceList;
+    private Set<ProjectResource> projectResourceList;
 
 
 
@@ -76,14 +77,13 @@ public class Resource {
         this.resourceDetailsList = resourceDetailsList;
     }
 
-    public List<ProjectResource> getProjectResourceList() {
+    public Set<ProjectResource> getProjectResourceList() {
         return projectResourceList;
     }
 
-    public void setProjectResourceList(List<ProjectResource> projectResourceList) {
+    public void setProjectResourceList(Set<ProjectResource> projectResourceList) {
         this.projectResourceList = projectResourceList;
     }
-
 
     public Date getLastUpdated() {
         return lastUpdated;
