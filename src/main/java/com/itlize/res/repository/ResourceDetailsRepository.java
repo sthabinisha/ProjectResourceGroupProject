@@ -5,4 +5,6 @@ import com.itlize.res.entity.ResourceDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ResourceDetailsRepository extends JpaRepository<ResourceDetails, Integer> {
+    Boolean existsByRecordId(Integer id);
+    ResourceDetails findByRecordId(Integer id);
 }

@@ -13,13 +13,11 @@ import com.itlize.res.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/auth/projectres")
@@ -44,5 +42,11 @@ public class ProjectResourceController {
 
         projectResourceService.addProjectResource(projectResource1);
         return new ResponseEntity<>(projectResource1, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/find/{record_id}")
+    public ResponseEntity<Optional<ProjectResource>> getProjectById(@PathVariable("record_id") Integer id){
+        Optional<ProjectResource> project = projectResourceService.getProjectById(id);
+        return new ResponseEntity<>(project, HttpStatus.OK);
     }
 }

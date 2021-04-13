@@ -30,14 +30,14 @@ public class Project {
     @JsonIgnore
     @OneToMany(fetch=FetchType.LAZY,
             mappedBy="projectId",
-            cascade= CascadeType.ALL)
+            cascade= CascadeType.ALL,  orphanRemoval = true)
     private List<ProjectColumns> projectColumns;
 
     @JsonIgnore
     @OneToMany(fetch=FetchType.LAZY,
             mappedBy="projectId",
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+                    CascadeType.DETACH, CascadeType.REFRESH}, orphanRemoval = true)
     private Set<ProjectResource> projectResources;
 
 //    @ManyToMany

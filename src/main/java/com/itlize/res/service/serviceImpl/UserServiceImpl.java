@@ -1,22 +1,18 @@
 package com.itlize.res.service.serviceImpl;
 
 import com.itlize.res.entity.User;
-import com.itlize.res.exception.UserNotFoundException;
 import com.itlize.res.repository.UserRepository;
 import com.itlize.res.security.UserPrincipal;
 import com.itlize.res.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityExistsException;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements  UserDetailsService, UserService {
@@ -41,6 +37,17 @@ public class UserServiceImpl implements  UserDetailsService, UserService {
     @Override
     public Optional<User> getUserByID(Integer userId) {
         return userRepository.findById(userId);
+    }
+
+    @Override
+    public void updateTitleofUser(Integer id, User user) {
+
+        User user1 = userRepository.findByUserId(id);
+
+        user1.setTitle(user.getTitle());
+
+
+        userRepository.save(user1);
     }
 
 ////    @Override
@@ -83,6 +90,5 @@ public class UserServiceImpl implements  UserDetailsService, UserService {
         return UserPrincipal.create(user);
     }
 
-    public void updateUser(User users) {
-    }
+
 }

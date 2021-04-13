@@ -28,6 +28,8 @@ public class SignUpRequest {
 
 	private Set<String> roles;
 
+	private String title;
+
 	public Set<String> getRoles() {
 		return roles;
 	}
@@ -63,4 +65,11 @@ public class SignUpRequest {
 	}
 
 
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getTitle() {
+		return title;
+	}
 }

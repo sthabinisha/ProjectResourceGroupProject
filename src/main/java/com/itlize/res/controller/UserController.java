@@ -56,19 +56,6 @@ public class UserController {
     }
     
 
-    @GetMapping("/all")
-    public ResponseEntity<List<User>> findAll() {
-        List<User> users = userService.getAllUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
-
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable("id") Integer id){
-        userService.deleteUserByID(id);
-        return ResponseEntity.ok(new ApiResponse(true, "Successfully deleted the userID: " + id));
-    }
-
 
 
     @PostMapping("/signup")
@@ -85,7 +72,7 @@ public class UserController {
 
         User user = new User(signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
-                passwordEncoder.encode(signUpRequest.getPassword()), Calendar.getInstance().getTime(), Calendar.getInstance().getTime());
+                passwordEncoder.encode(signUpRequest.getPassword()), Calendar.getInstance().getTime(), Calendar.getInstance().getTime(), signUpRequest.getTitle());
 
         System.out.println(user.toString());
 

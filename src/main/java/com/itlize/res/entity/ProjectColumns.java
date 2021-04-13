@@ -15,7 +15,7 @@ public class ProjectColumns {
     @Column(nullable = false, updatable = false, name="column_id")
     private Integer columnId;
 
-    @ManyToOne(cascade= CascadeType.ALL)
+    @ManyToOne(cascade= CascadeType.DETACH)
     @JoinColumn(name= "project_id")
     private Project projectId;
 
@@ -33,10 +33,19 @@ public class ProjectColumns {
     @OneToMany(fetch=FetchType.LAZY,
             mappedBy="columnId",
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+                    CascadeType.DETACH, CascadeType.REFRESH}, orphanRemoval = true)
     private List<ResourceDetails> resourceDetails;
 
 
+    public ProjectColumns() {
+    }
+
+    public ProjectColumns(String columnName, String formulaText, Project projectId, TypeEnum typeEnum) {
+        this.projectId = projectId;
+        this.columnName = columnName;
+        this.typeEnum = typeEnum;
+        this.formulaText = formulaText;
+    }
 
     public Project getProjectId() {
         return projectId;
@@ -92,5 +101,17 @@ public class ProjectColumns {
 
     public void setResourceDetails(List<ResourceDetails> resourceDetails) {
         this.resourceDetails = resourceDetails;
+    }
+
+    @Override
+    public String toString() {
+        return "ProjectColumns{" +
+                "columnId=" + columnId +
+                ", projectId=" + projectId +
+                ", columnName='" + columnName + '\'' +
+                ", typeEnum=" + typeEnum +
+                ", formulaText='" + formulaText + '\'' +
+                ", resourceDetails=" + resourceDetails +
+                '}';
     }
 }

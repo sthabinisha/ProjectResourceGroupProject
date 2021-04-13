@@ -14,5 +14,5 @@ public interface ProjectColumnsService {
 
 
     ProjectColumns addProjectColumn(ProjectColumns projectColumns);
-    ProjectColumns updateProjectColumn(ProjectColumns projectColumns);
+    ProjectColumns updateProjectColumn(Integer column_id, ProjectColumns projectColumns);
 }

@@ -32,8 +32,24 @@ public class ResourceDetails {
     private ProjectColumns columnId;
 
 
+    public ResourceDetails() {
+    }
 
+    public ResourceDetails(Integer recordId, Date timeCreated, Date lastUpdated, Resource resourceId, String columnValue, ProjectColumns columnId) {
+        this.recordId = recordId;
+        this.timeCreated = timeCreated;
+        this.lastUpdated = lastUpdated;
+        this.resourceId = resourceId;
+        this.columnValue = columnValue;
+        this.columnId = columnId;
+    }
 
+    public ResourceDetails(Integer recordId, Resource resourceId, String columnValue) {
+        this.recordId = recordId;
+
+        this.resourceId = resourceId;
+        this.columnValue = columnValue;
+    }
 
     public Integer getRecordId() {
         return recordId;
@@ -91,5 +107,15 @@ public class ResourceDetails {
         this.columnId = columnId;
     }
 
-
+    @Override
+    public String toString() {
+        return "ResourceDetails{" +
+                "recordId=" + recordId +
+                ", timeCreated=" + timeCreated +
+                ", lastUpdated=" + lastUpdated +
+                ", resourceId=" + resourceId +
+                ", columnValue='" + columnValue + '\'' +
+                ", columnId=" + columnId +
+                '}';
+    }
 }

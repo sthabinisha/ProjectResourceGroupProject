@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProjectResourceServiceImpl implements ProjectResourceService {
@@ -32,5 +33,10 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
     public void addProjectResource(ProjectResource projectResource1) {
         projectResourceRepository.save(projectResource1);
 
+    }
+
+    @Override
+    public Optional<ProjectResource> getProjectById(Integer record_id) {
+        return projectResourceRepository.findById(record_id);
     }
 }

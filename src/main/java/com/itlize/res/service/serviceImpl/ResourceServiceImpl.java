@@ -25,6 +25,7 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Override
     public void deleteAllResourcebyID(Integer pID) {
+        resourcesRepository.deleteById(pID);
 
     }
 

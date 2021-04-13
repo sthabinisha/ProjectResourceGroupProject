@@ -48,7 +48,7 @@ public class User{
     @OneToMany(fetch=FetchType.LAZY,
             mappedBy="userId",
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+                    CascadeType.DETACH, CascadeType.REFRESH}, orphanRemoval = true)
     @JsonIgnore
     private List<Project> project;
 
@@ -66,6 +66,17 @@ public class User{
 
     public User() {
 
+    }
+
+    public User(String title) {
+        this.title = title;
+    }
+
+    public User(String username, String email, String title) {
+        this.username = username;
+        this.email = email;
+
+        this.title = title;
     }
 
     public void setUsername(String username) {
@@ -88,12 +99,13 @@ public class User{
         this.project = project;
     }
 
-    public User(String username, String email, String password, Date createdDate, Date lastUpdated){
+    public User(String username, String email, String password, Date createdDate, Date lastUpdated, String title){
         this.username = username;
         this.password = password;
         this.email = email;
         this.createdDate = createdDate;
         this.lastUpdated = lastUpdated;
+        this.title = title;
 
     }
 

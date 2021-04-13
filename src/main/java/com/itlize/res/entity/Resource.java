@@ -26,12 +26,12 @@ public class Resource {
     @JsonIgnore
     @OneToMany(fetch=FetchType.LAZY,
             mappedBy="resourceId",
-            cascade= CascadeType.ALL)
+            cascade= CascadeType.ALL, orphanRemoval = true)
     private List<ResourceDetails> resourceDetailsList;
     @JsonIgnore
     @OneToMany(fetch=FetchType.LAZY,
             mappedBy="resourceId",
-            cascade= CascadeType.ALL)
+            cascade= CascadeType.ALL, orphanRemoval = true)
     private Set<ProjectResource> projectResourceList;
 
 

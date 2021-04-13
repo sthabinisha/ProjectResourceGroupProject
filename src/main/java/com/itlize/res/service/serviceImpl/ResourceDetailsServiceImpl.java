@@ -1,5 +1,6 @@
 package com.itlize.res.service.serviceImpl;
 
+import com.itlize.res.entity.ProjectColumns;
 import com.itlize.res.entity.ResourceDetails;
 import com.itlize.res.repository.ResourceDetailsRepository;
 import com.itlize.res.service.ResourceDetailsService;
@@ -42,7 +43,14 @@ public class ResourceDetailsServiceImpl implements ResourceDetailsService {
     }
 
     @Override
-    public ResourceDetails updateResourceDetail(Integer recordId) {
-        return null;
+    public ResourceDetails updateResourceDetail(Integer recordId, ResourceDetails resourceDetails) {
+        ResourceDetails resourceDetails1 = resourceDetailsRepository.findByRecordId(recordId);
+      //  resourceDetails1.setResource(resourceDetails.getResource());
+        resourceDetails1.setColumnValue(resourceDetails.getColumnValue());
+
+      //  resourceDetails1.setColumnId(resourceDetails.getColumnId());
+        return resourceDetailsRepository.save(resourceDetails1);
     }
+
+
 }

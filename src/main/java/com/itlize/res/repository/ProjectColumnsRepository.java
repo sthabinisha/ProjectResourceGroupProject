@@ -8,4 +8,6 @@ public interface ProjectColumnsRepository extends JpaRepository<ProjectColumns, 
 
     ProjectColumns findProjectColumnsByColumnId(Integer columnId);
     String deleteProjectColumnsByColumnId(Integer id);
+    ProjectColumns findByColumnId(Integer columnid);
+    Boolean existsByColumnId(Integer column_id);
 }

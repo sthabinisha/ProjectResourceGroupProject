@@ -1,8 +1,8 @@
 package com.itlize.res.controller;
 
-import com.itlize.res.entity.Project;
 import com.itlize.res.entity.ProjectColumns;
-import com.itlize.res.entity.User;
+import com.itlize.res.payloads.ApiResponse;
+import com.itlize.res.repository.ProjectColumnsRepository;
 import com.itlize.res.service.ProjectColumnsService;
 import com.itlize.res.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/auth/api/column")
+@RequestMapping("api/column")
 public class ProjectColumnController {
     private final ProjectColumnsService projectColumnsService;
 
@@ -25,6 +25,8 @@ public class ProjectColumnController {
 
     @Autowired
     private ProjectService projectService;
+    @Autowired
+    private ProjectColumnsRepository projectColumnsRepository;
 
     @GetMapping("viewall")
     public ResponseEntity<List<ProjectColumns>> getAllProject(){
@@ -37,16 +39,27 @@ public class ProjectColumnController {
         ProjectColumns project = projectColumnsService.getProjectColumnById(id);
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
-    @PutMapping("/update")
-    public ResponseEntity<ProjectColumns> updateUser(@RequestBody ProjectColumns projectColumns){
-        ProjectColumns updateProjectColumn = projectColumnsService.updateProjectColumn(projectColumns);
-        return new ResponseEntity<>(updateProjectColumn, HttpStatus.OK);
+    @PutMapping("/update/{column_id}")
+    public ResponseEntity<?> updateUser(@PathVariable("column_id") Integer id, @RequestBody ProjectColumns projectColumns){
+        if(projectColumnsRepository.existsByColumnId(id)){
+            projectColumnsService.updateProjectColumn(id, projectColumns);
+
+            return ResponseEntity.ok(new ApiResponse(true, "Successfully updated the userID: " + id));
+        }else{
+            return ResponseEntity.ok(new ApiResponse(false, "Project Column does not exist. The ID is  " + id));
+        }
+
+
+
     }
-    @PostMapping("/addproject")
+
+
+
+    @PostMapping("/add")
     public ResponseEntity<ProjectColumns> addProject(@RequestBody ProjectColumns projectColumns){
         System.out.println(projectColumns);
-        Project project = projectService.getProjectById(projectColumns.getProjectId().getProjectId());
-        projectColumns.setProjectId(project);
+
+
 
         ProjectColumns newProject = projectColumnsService.addProjectColumn(projectColumns);
         return new ResponseEntity<>(newProject, HttpStatus.CREATED);

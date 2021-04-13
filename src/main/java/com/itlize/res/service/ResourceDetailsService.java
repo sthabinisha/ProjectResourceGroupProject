@@ -14,7 +14,7 @@ public interface ResourceDetailsService {
 
     String getColumnValueByResourceId(Integer recordId);
     ResourceDetails addResourceDetails(ResourceDetails resourceDetails);
-    ResourceDetails updateResourceDetail(Integer recordId);
+    ResourceDetails updateResourceDetail(Integer recordId, ResourceDetails resourceDetails);
 
 
 }

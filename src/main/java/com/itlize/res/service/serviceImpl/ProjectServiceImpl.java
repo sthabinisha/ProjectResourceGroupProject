@@ -21,8 +21,8 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public String deleteAllProjectbyID(Integer pID) {
-        return projectRepository.deleteByProjectId(pID);
+    public void deleteAllProjectbyID(Integer pID) {
+        projectRepository.deleteById(pID);
 
     }
 

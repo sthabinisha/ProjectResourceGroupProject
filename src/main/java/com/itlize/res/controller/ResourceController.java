@@ -4,11 +4,14 @@ import com.itlize.res.entity.Project;
 import com.itlize.res.entity.Resource;
 import com.itlize.res.entity.ResourceDetails;
 import com.itlize.res.entity.User;
+import com.itlize.res.payloads.ApiResponse;
+import com.itlize.res.repository.ResourcesRepository;
 import com.itlize.res.service.ProjectService;
 import com.itlize.res.service.ResourceDetailsService;
 import com.itlize.res.service.ResourceService;
 import com.itlize.res.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.init.ResourceReader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +26,7 @@ public class ResourceController {
     @Autowired
     private ResourceService resourceService;
     @Autowired
-    private ResourceDetailsService resourceDetailsService;
+    private ResourcesRepository resourcesRepository;
 
     @GetMapping("viewall")
     public ResponseEntity<List<Resource>> getAllResources(){
@@ -46,9 +49,17 @@ public class ResourceController {
 
     @DeleteMapping("/delete/{resource_id}")
     public ResponseEntity<String> deleteById(@PathVariable("resource_id") Integer resourceId){
-        String deleteProject=  "Resource removed !! " + resourceId;
-        resourceService.deleteAllResourcebyID(resourceId);
-        return new ResponseEntity<>( deleteProject, HttpStatus.OK);
+        String deleteProject=  "Resource " + resourceId+ " removed !!";
+
+        if(resourcesRepository.existsById(resourceId)) {
+
+
+            resourceService.deleteAllResourcebyID(resourceId);
+            return new ResponseEntity(new ApiResponse(true, deleteProject), HttpStatus.OK);
+        }else{
+            return new ResponseEntity(new ApiResponse(false, "Resource Id "+ resourceId+" doesn't exist"), HttpStatus.BAD_REQUEST);
+
+        }
 
     }
 

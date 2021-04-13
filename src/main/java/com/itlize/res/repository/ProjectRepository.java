@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
     //void deleteProjectRepositoryById(Integer id);
 
+    Boolean existsByProjectId(Integer id);
     String deleteByProjectId(Integer id);
     Project findByProjectId(Integer id);
 }
