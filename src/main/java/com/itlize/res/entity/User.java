@@ -22,7 +22,7 @@ public class User{
     @Id
     @GeneratedValue(strategy=IDENTITY)
     @Column(nullable = false, updatable = false, name="user_id")
-    private Integer userId;
+    private Long userId;
     @Column(name="username")
     private String username;
     @Column(name="password")
@@ -53,7 +53,7 @@ public class User{
     private List<Project> project;
 
 
-    public User(Integer userId, String username, String password, String title, String email, Set<Role> roles, Date createdDate, Date lastUpdated) {
+    public User(Long userId, String username, String password, String title, String email, Set<Role> roles, Date createdDate, Date lastUpdated) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -114,21 +114,21 @@ public class User{
         this.password = password;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
 
 
-    public Integer getUserID() {
+    public Long getUserID() {
         return userId;
     }
 
-    public void setUserID(Integer userID) {
+    public void setUserID(Long userID) {
         this.userId = userID;
     }
 

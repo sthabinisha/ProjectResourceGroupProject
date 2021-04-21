@@ -27,7 +27,7 @@ public class ProjectColumnServiceImpl implements ProjectColumnsService {
 
 
     @Override
-    public ProjectColumns getProjectColumnById(Integer id) {
+    public ProjectColumns getProjectColumnById(Long id) {
         return projectColumnsRepository.findProjectColumnsByColumnId(id);
     }
 
@@ -39,7 +39,7 @@ public class ProjectColumnServiceImpl implements ProjectColumnsService {
     }
 
     @Override
-    public ProjectColumns updateProjectColumn(Integer id, ProjectColumns projectColumns) {
+    public ProjectColumns updateProjectColumn(Long id, ProjectColumns projectColumns) {
         ProjectColumns projectColumns1 = projectColumnsRepository.findByColumnId(id);
         projectColumns1.setProjectId(projectColumns.getProjectId());
         projectColumns1.setColumnName(projectColumns.getColumnName());
@@ -49,7 +49,7 @@ public class ProjectColumnServiceImpl implements ProjectColumnsService {
         return projectColumnsRepository.save(projectColumns1);
     }
     @Override
-    public String deleteProjectColumnbyID(Integer pID) {
+    public String deleteProjectColumnbyID(Long pID) {
         return projectColumnsRepository.deleteProjectColumnsByColumnId(pID);
 
     }

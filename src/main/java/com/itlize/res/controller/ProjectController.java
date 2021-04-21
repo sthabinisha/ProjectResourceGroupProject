@@ -43,7 +43,7 @@ public class ProjectController {
     }
 
     @GetMapping("/find/{project_id}")
-    public ResponseEntity<Project> getProjectById(@PathVariable("project_id") Integer id){
+    public ResponseEntity<Project> getProjectById(@PathVariable("project_id") Long id){
         Project project = projectService.getProjectById(id);
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
@@ -61,7 +61,7 @@ public class ProjectController {
 
 
     @DeleteMapping("/delete/{project_id}")
-    public ResponseEntity<?> deleteById(@PathVariable("project_id") Integer projectId){
+    public ResponseEntity<?> deleteById(@PathVariable("project_id") Long projectId){
 
         if(projectRepository.existsById(projectId)) {
 

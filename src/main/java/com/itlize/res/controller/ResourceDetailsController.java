@@ -48,7 +48,7 @@ public class ResourceDetailsController {
 //        return new ResponseEntity<>(project, HttpStatus.OK);
         //    }
         @PutMapping("/update/{record_id}")
-        public ResponseEntity<?> updateUser(@PathVariable("record_id") Integer id, @RequestBody ResourceDetails resourceDetails){
+        public ResponseEntity<?> updateUser(@PathVariable("record_id") Long id, @RequestBody ResourceDetails resourceDetails){
             if(resourceDetailsRepository.existsByRecordId(id)){
                 resourceDetailsService.updateResourceDetail(id, resourceDetails);
 
@@ -74,7 +74,7 @@ public class ResourceDetailsController {
     }
 
     @DeleteMapping("/delete/{record_id}")
-    public ResponseEntity<String> deleteById(@PathVariable("record_id") Integer cId){
+    public ResponseEntity<String> deleteById(@PathVariable("record_id") Long cId){
         String deleteProject=  "Project column removed !! " + cId;
         resourceDetailsService.deleteAllResourceDetailsByID(cId);
         return new ResponseEntity<>( deleteProject, HttpStatus.OK);

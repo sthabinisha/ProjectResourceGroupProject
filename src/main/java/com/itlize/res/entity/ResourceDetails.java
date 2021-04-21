@@ -12,7 +12,7 @@ public class ResourceDetails {
     @Id
     @GeneratedValue(strategy=IDENTITY)
     @Column(nullable = false, updatable = false, name="record_id")
-    private Integer recordId;
+    private Long recordId;
 
     @Column(name="time_created")
     private Date timeCreated;
@@ -35,7 +35,7 @@ public class ResourceDetails {
     public ResourceDetails() {
     }
 
-    public ResourceDetails(Integer recordId, Date timeCreated, Date lastUpdated, Resource resourceId, String columnValue, ProjectColumns columnId) {
+    public ResourceDetails(Long recordId, Date timeCreated, Date lastUpdated, Resource resourceId, String columnValue, ProjectColumns columnId) {
         this.recordId = recordId;
         this.timeCreated = timeCreated;
         this.lastUpdated = lastUpdated;
@@ -44,18 +44,18 @@ public class ResourceDetails {
         this.columnId = columnId;
     }
 
-    public ResourceDetails(Integer recordId, Resource resourceId, String columnValue) {
+    public ResourceDetails(Long recordId, Resource resourceId, String columnValue) {
         this.recordId = recordId;
 
         this.resourceId = resourceId;
         this.columnValue = columnValue;
     }
 
-    public Integer getRecordId() {
+    public Long getRecordId() {
         return recordId;
     }
 
-    public void setRecordId(Integer recordId) {
+    public void setRecordId(Long recordId) {
         this.recordId = recordId;
     }
 

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class UserPrincipal implements UserDetails {
 
-	private Integer id;
+	private Long id;
 
 
 	private String username;
@@ -26,7 +26,7 @@ public class UserPrincipal implements UserDetails {
 
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public UserPrincipal(Integer id,  String username, String email, String password,
+	public UserPrincipal(Long id,  String username, String email, String password,
                          Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
 
@@ -45,7 +45,7 @@ public class UserPrincipal implements UserDetails {
 	}
 
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 

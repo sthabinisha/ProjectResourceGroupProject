@@ -9,12 +9,12 @@ import java.util.Optional;
 public interface UserService{
 
     public List<User> getAllUsers ();
-    String deleteUserByID(Integer pID);
+    String deleteUserByID(Long pID);
 //    public User getUserName(Integer userId);
 //    public User saveUser(User user);
-    public Optional<User>  getUserByID(Integer userId);
+    public Optional<User>  getUserByID(Long userId);
 
-    public void updateTitleofUser(Integer id, User user);
+    public void updateTitleofUser(Long id, User user);
 //
 //    User loadUserByUserName(String username) throws UserNotFoundException;
 //

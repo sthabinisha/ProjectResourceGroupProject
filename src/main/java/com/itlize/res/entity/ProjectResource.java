@@ -11,7 +11,7 @@ public class ProjectResource {
     @Id
     @GeneratedValue(strategy=IDENTITY)
     @Column(nullable = false, updatable = false, name="record_id")
-    private Integer recordId;
+    private Long recordId;
 
     @Column(name= "date_created")
     private Date dateCreated;
@@ -49,18 +49,18 @@ public class ProjectResource {
         this.resourceId = resourceID;
     }
 
-    public ProjectResource(Integer recordId, Date dateCreated, Project projectID, Resource resourceID) {
+    public ProjectResource(Long recordId, Date dateCreated, Project projectID, Resource resourceID) {
         this.recordId = recordId;
         this.dateCreated = dateCreated;
         this.projectId = projectID;
         this.resourceId = resourceID;
     }
 
-    public Integer getRecordId() {
+    public Long getRecordId() {
         return recordId;
     }
 
-    public void setRecordId(Integer recordId) {
+    public void setRecordId(Long recordId) {
         this.recordId = recordId;
     }
 

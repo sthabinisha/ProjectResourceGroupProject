@@ -24,7 +24,7 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
 
 
     @Override
-    public String deleteProjectDetails(Integer recordid) {
+    public String deleteProjectDetails(Long recordid) {
          projectResourceRepository.deleteById(recordid);
          return "Delete project details By ID: "+ recordid;
     }
@@ -36,7 +36,7 @@ public class ProjectResourceServiceImpl implements ProjectResourceService {
     }
 
     @Override
-    public Optional<ProjectResource> getProjectById(Integer record_id) {
+    public Optional<ProjectResource> getProjectById(Long record_id) {
         return projectResourceRepository.findById(record_id);
     }
 }

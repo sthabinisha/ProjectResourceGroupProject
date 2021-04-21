@@ -9,12 +9,12 @@ import java.util.List;
 
 public interface ResourceDetailsService {
     public List<ResourceDetails> getAllResourcesDetails ();
-    String deleteAllResourceDetailsByID(Integer recordId);
-    Date getTimeCreatedbyId(Integer recordId);
+    String deleteAllResourceDetailsByID(Long recordId);
+    Date getTimeCreatedbyId(Long recordId);
 
-    String getColumnValueByResourceId(Integer recordId);
+    String getColumnValueByResourceId(Long recordId);
     ResourceDetails addResourceDetails(ResourceDetails resourceDetails);
-    ResourceDetails updateResourceDetail(Integer recordId, ResourceDetails resourceDetails);
+    ResourceDetails updateResourceDetail(Long recordId, ResourceDetails resourceDetails);
 
 
 }

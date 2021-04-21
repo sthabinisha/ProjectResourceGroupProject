@@ -56,7 +56,7 @@ public class UserRepositoryTest {
         assertThat(existUser.getUsername()).isEqualTo(user.getUsername());
 
         //projectRepository.save(new Project(1, Calendar.getInstance().getTime(), user, projectColumns, projectResource));
-        assertThat(projectRepository.findById(1)).isNotNull();
+        assertThat(projectRepository.findById((long) 1)).isNotNull();
 
 
 

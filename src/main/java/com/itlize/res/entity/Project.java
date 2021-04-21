@@ -17,7 +17,7 @@ public class Project {
     @Id
     @GeneratedValue(strategy=IDENTITY)
     @Column(nullable = false, updatable = false, name="project_id")
-    private Integer projectId;
+    private Long projectId;
 
 
     @Column(name="time_created")
@@ -78,11 +78,11 @@ public class Project {
         this.timeCreated = timeCreated;
     }
 
-    public Integer getProjectId() {
+    public Long getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(Integer projectId) {
+    public void setProjectId(Long projectId) {
         this.projectId = projectId;
     }
 

@@ -7,9 +7,9 @@ import java.util.List;
 public interface ProjectService {
 
     public List<Project> getAllProject ();
-    void deleteAllProjectbyID(Integer cID);
+    void deleteAllProjectbyID(Long cID);
 
-    void getProjectName(Integer pID);
+    void getProjectName(Long pID);
     Project addProject(Project project);
-    Project getProjectById(Integer pId);
+    Project getProjectById(Long pId);
 }

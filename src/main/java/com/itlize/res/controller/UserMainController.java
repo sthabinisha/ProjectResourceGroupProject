@@ -53,13 +53,13 @@ public class UserMainController {
 
     }
     @GetMapping("/find/{user_id}")
-    public ResponseEntity<Optional<User> > getUserByID(@PathVariable("user_id") Integer id){
+    public ResponseEntity<Optional<User> > getUserByID(@PathVariable("user_id") Long id){
         Optional<User> user =  userService.getUserByID(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable("id") Integer id){
+    public ResponseEntity<?> deleteUser(@PathVariable("id") Long id){
         if(userRepository.existsById(id)){
             userService.deleteUserByID(id);
             return ResponseEntity.ok(new ApiResponse(true, "Successfully deleted the userID: " + id));
@@ -71,7 +71,7 @@ public class UserMainController {
     }
 
     @PutMapping("/update/{user_id}")
-    public ResponseEntity<?> UpdateUserUserId(@PathVariable("user_id") Integer id, @RequestBody User user){
+    public ResponseEntity<?> UpdateUserUserId(@PathVariable("user_id") Long id, @RequestBody User user){
         if(userRepository.existsById(id)){
             System.out.println(user);
             userService.updateTitleofUser(id,user);

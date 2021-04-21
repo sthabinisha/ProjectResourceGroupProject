@@ -24,18 +24,18 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
     @Override
-    public void deleteAllResourcebyID(Integer pID) {
+    public void deleteAllResourcebyID(Long pID) {
         resourcesRepository.deleteById(pID);
 
     }
 
     @Override
-    public Optional<Resource> getResourcesById(Integer resoureceId) {
+    public Optional<Resource> getResourcesById(Long resoureceId) {
         return resourcesRepository.findById(resoureceId);
     }
 
     @Override
-    public Resource getResourceById(Integer pID) {
+    public Resource getResourceById(Long pID) {
         return resourcesRepository.findResourcesByResourceId(pID);
     }
 

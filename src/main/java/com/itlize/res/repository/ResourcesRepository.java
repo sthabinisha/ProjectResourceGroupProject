@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ResourcesRepository extends JpaRepository<Resource, Integer> {
+public interface ResourcesRepository extends JpaRepository<Resource, Long> {
 
-    Resource findResourcesByResourceId(Integer id);
+    Resource findResourcesByResourceId(Long id);
 
     //Resource findResourcesByResourceI
 }

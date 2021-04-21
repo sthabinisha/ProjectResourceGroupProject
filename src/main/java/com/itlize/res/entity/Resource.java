@@ -15,7 +15,7 @@ public class Resource {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false, name="resource_id")
-    private Integer resourceId;
+    private Long resourceId;
 
     @Column(name = "time_created")
     private Date timeCreated;
@@ -39,17 +39,17 @@ public class Resource {
     public Resource() {
     }
 
-    public Resource(Integer resourceID, Date timeCreated, Date lastUpdated) {
+    public Resource(Long resourceID, Date timeCreated, Date lastUpdated) {
         this.resourceId = resourceID;
         this.timeCreated = timeCreated;
         this.lastUpdated = lastUpdated;
     }
 
-    public Integer getResourceID() {
+    public Long getResourceID() {
         return resourceId;
     }
 
-    public void setResourceID(Integer resourceID) {
+    public void setResourceID(Long resourceID) {
         this.resourceId = resourceID;
     }
 
@@ -61,11 +61,11 @@ public class Resource {
         this.timeCreated = timeCreated;
     }
 
-    public Integer getResourceId() {
+    public Long getResourceId() {
         return resourceId;
     }
 
-    public void setResourceId(Integer resourceId) {
+    public void setResourceId(Long resourceId) {
         this.resourceId = resourceId;
     }
 

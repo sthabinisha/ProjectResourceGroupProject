@@ -9,10 +9,10 @@ import java.util.List;
 
 public interface ProjectColumnsService {
     public List<ProjectColumns> getAllProjectColumns ();
-    public ProjectColumns getProjectColumnById(Integer column_id);
-    String deleteProjectColumnbyID(Integer pID);
+    public ProjectColumns getProjectColumnById(Long column_id);
+    String deleteProjectColumnbyID(Long pID);
 
 
     ProjectColumns addProjectColumn(ProjectColumns projectColumns);
-    ProjectColumns updateProjectColumn(Integer column_id, ProjectColumns projectColumns);
+    ProjectColumns updateProjectColumn(Long column_id, ProjectColumns projectColumns);
 }

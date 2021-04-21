@@ -13,7 +13,7 @@ public class ProjectColumns {
     @Id
     @GeneratedValue(strategy=IDENTITY)
     @Column(nullable = false, updatable = false, name="column_id")
-    private Integer columnId;
+    private Long columnId;
 
     @ManyToOne(cascade= CascadeType.DETACH)
     @JoinColumn(name= "project_id")
@@ -55,11 +55,11 @@ public class ProjectColumns {
         this.projectId = projectId;
     }
 
-    public Integer getColumnId() {
+    public Long getColumnId() {
         return columnId;
     }
 
-    public void setColumnId(Integer columnId) {
+    public void setColumnId(Long columnId) {
         this.columnId = columnId;
     }
 

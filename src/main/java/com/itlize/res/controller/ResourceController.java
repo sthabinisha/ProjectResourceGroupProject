@@ -35,7 +35,7 @@ public class ResourceController {
     }
 
     @GetMapping("/find/{resource_id}")
-    public ResponseEntity<Optional<Resource> > getResources(@PathVariable("resource_id") Integer id){
+    public ResponseEntity<Optional<Resource> > getResources(@PathVariable("resource_id") Long id){
         Optional<Resource> resource = resourceService.getResourcesById(id);
         return new ResponseEntity<>(resource, HttpStatus.OK);
     }
@@ -48,7 +48,7 @@ public class ResourceController {
     }
 
     @DeleteMapping("/delete/{resource_id}")
-    public ResponseEntity<String> deleteById(@PathVariable("resource_id") Integer resourceId){
+    public ResponseEntity<String> deleteById(@PathVariable("resource_id") Long resourceId){
         String deleteProject=  "Resource " + resourceId+ " removed !!";
 
         if(resourcesRepository.existsById(resourceId)) {

@@ -35,12 +35,12 @@ public class ProjectColumnController {
     }
 
     @GetMapping("/find/{column_id}")
-    public ResponseEntity<ProjectColumns> getProjectById(@PathVariable("column_id") Integer id){
+    public ResponseEntity<ProjectColumns> getProjectById(@PathVariable("column_id") Long id){
         ProjectColumns project = projectColumnsService.getProjectColumnById(id);
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
     @PutMapping("/update/{column_id}")
-    public ResponseEntity<?> updateUser(@PathVariable("column_id") Integer id, @RequestBody ProjectColumns projectColumns){
+    public ResponseEntity<?> updateUser(@PathVariable("column_id") Long id, @RequestBody ProjectColumns projectColumns){
         if(projectColumnsRepository.existsByColumnId(id)){
             projectColumnsService.updateProjectColumn(id, projectColumns);
 
@@ -66,7 +66,7 @@ public class ProjectColumnController {
     }
 
     @DeleteMapping("/delete/{column_id}")
-    public ResponseEntity<String> deleteById(@PathVariable("column_id") Integer cId){
+    public ResponseEntity<String> deleteById(@PathVariable("column_id") Long cId){
         String deleteProject=  "Project column removed !! " + cId;
         projectColumnsService.deleteProjectColumnbyID(cId);
         return new ResponseEntity<>( deleteProject, HttpStatus.OK);

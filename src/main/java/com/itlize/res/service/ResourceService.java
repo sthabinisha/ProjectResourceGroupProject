@@ -12,11 +12,11 @@ public interface ResourceService {
 
     public List<Resource> getAllResources();
 
-    void deleteAllResourcebyID(Integer pID);
+    void deleteAllResourcebyID(Long pID);
 
-    public Optional<Resource> getResourcesById(Integer resoureceId);
+    public Optional<Resource> getResourcesById(Long resoureceId);
 
-    Resource getResourceById(Integer pID);
+    Resource getResourceById(Long pID);
     Resource addResource(Resource resource);
 }
 

@@ -45,7 +45,7 @@ public class ProjectResourceController {
     }
 
     @GetMapping("/find/{record_id}")
-    public ResponseEntity<Optional<ProjectResource>> getProjectById(@PathVariable("record_id") Integer id){
+    public ResponseEntity<Optional<ProjectResource>> getProjectById(@PathVariable("record_id") Long id){
         Optional<ProjectResource> project = projectResourceService.getProjectById(id);
         return new ResponseEntity<>(project, HttpStatus.OK);
     }

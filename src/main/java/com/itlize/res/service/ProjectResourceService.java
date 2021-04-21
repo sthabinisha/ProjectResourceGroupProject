@@ -13,8 +13,8 @@ import java.util.Optional;
 public interface ProjectResourceService {
     public List<ProjectResource> getAllProjectResources();
 
-    String deleteProjectDetails(Integer recordid);
+    String deleteProjectDetails(Long recordid);
 
     void addProjectResource(ProjectResource projectResource1);
-    Optional<ProjectResource> getProjectById(Integer record_id);
+    Optional<ProjectResource> getProjectById(Long record_id);
 }

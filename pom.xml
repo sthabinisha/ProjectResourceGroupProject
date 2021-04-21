@@ -36,6 +36,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
+			<version>8.0.20</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.persistence</groupId>
@@ -62,11 +63,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.itlize</groupId>
-			<artifactId>res</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+
 
 	</dependencies>
 
@@ -77,6 +74,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>res-project</finalName>
 	</build>
 
 </project>

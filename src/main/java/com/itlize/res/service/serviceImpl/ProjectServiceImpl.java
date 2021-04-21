@@ -21,13 +21,13 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void deleteAllProjectbyID(Integer pID) {
+    public void deleteAllProjectbyID(Long pID) {
         projectRepository.deleteById(pID);
 
     }
 
         @Override
-    public void getProjectName(Integer pID) {
+    public void getProjectName(Long pID) {
         projectRepository.findById(pID);
 
     }
@@ -38,7 +38,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project getProjectById(Integer pId) {
+    public Project getProjectById(Long pId) {
         return projectRepository.findByProjectId(pId);
     }
 

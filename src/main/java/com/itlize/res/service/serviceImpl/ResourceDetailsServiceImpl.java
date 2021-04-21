@@ -22,18 +22,18 @@ public class ResourceDetailsServiceImpl implements ResourceDetailsService {
     }
 
     @Override
-    public String deleteAllResourceDetailsByID(Integer recordId) {
+    public String deleteAllResourceDetailsByID(Long recordId) {
         resourceDetailsRepository.deleteById(recordId);
         return "Deleted resource details by ID: "+ recordId;
     }
 
     @Override
-    public Date getTimeCreatedbyId(Integer recordId) {
+    public Date getTimeCreatedbyId(Long recordId) {
         return null;
     }
 
     @Override
-    public String getColumnValueByResourceId(Integer recordId) {
+    public String getColumnValueByResourceId(Long recordId) {
         return null;
     }
 
@@ -43,7 +43,7 @@ public class ResourceDetailsServiceImpl implements ResourceDetailsService {
     }
 
     @Override
-    public ResourceDetails updateResourceDetail(Integer recordId, ResourceDetails resourceDetails) {
+    public ResourceDetails updateResourceDetail(Long recordId, ResourceDetails resourceDetails) {
         ResourceDetails resourceDetails1 = resourceDetailsRepository.findByRecordId(recordId);
       //  resourceDetails1.setResource(resourceDetails.getResource());
         resourceDetails1.setColumnValue(resourceDetails.getColumnValue());

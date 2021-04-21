@@ -28,19 +28,19 @@ public class UserServiceImpl implements  UserDetailsService, UserService {
     }
 
     @Override
-    public String deleteUserByID(Integer uID) {
+    public String deleteUserByID(Long uID) {
          userRepository.deleteById(uID);
         return "User removed !! " + uID;
 
     }
 
     @Override
-    public Optional<User> getUserByID(Integer userId) {
+    public Optional<User> getUserByID(Long userId) {
         return userRepository.findById(userId);
     }
 
     @Override
-    public void updateTitleofUser(Integer id, User user) {
+    public void updateTitleofUser(Long id, User user) {
 
         User user1 = userRepository.findByUserId(id);
 
@@ -74,7 +74,7 @@ public class UserServiceImpl implements  UserDetailsService, UserService {
 
     // @Override
     @Transactional
-    public UserDetails loadUserById(Integer userId) {
+    public UserDetails loadUserById(Long userId) {
         User user = userRepository. findById(userId).orElseThrow(
                 () -> new UsernameNotFoundException("User not found with username or email : " + userId));
 
