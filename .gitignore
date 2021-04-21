@@ -2,7 +2,7 @@ HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
-main/resources/application-dev.yml
+**/src/main/resources/application-dev.yml
 !**/src/test/**/target/
 
 ### STS ###
